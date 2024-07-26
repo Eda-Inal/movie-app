@@ -1,4 +1,6 @@
-import variables from './variables.module.scss'
+'use client'
+import { ThemeProvider } from "@emotion/react";
+import theme from "./theme";
 
 
 
@@ -6,7 +8,11 @@ import variables from './variables.module.scss'
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeProvider theme={theme}>
+        {children}
+        </ThemeProvider>
+       </body>
     </html>
   );
 }
