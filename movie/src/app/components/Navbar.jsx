@@ -5,6 +5,8 @@ import styles from './styles.module.css';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton, List, ListItemButton, ListItemText, Tooltip } from '@mui/material';
 import { Menu as MenuIcon, ArrowBackIos as ArrowBackIosIcon, ArrowForwardIosOutlined as ArrowForwardIosOutlinedIcon, HomeOutlined as HomeOutlinedIcon, MovieFilterOutlined as MovieFilterOutlinedIcon, FavoriteBorderOutlined as FavoriteBorderOutlinedIcon } from '@mui/icons-material';
 import { useTheme, keyframes, styled } from '@mui/material/styles';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 
 
 const slideIn = keyframes`
@@ -50,6 +52,7 @@ const Sidebar = styled(Box, {
 function Navbar() {
   const dispatch = useDispatch();
   const isSidebar = useSelector((state) => state.movie.isSidebar);
+
   const theme = useTheme();
 
 
@@ -60,6 +63,7 @@ function Navbar() {
   const handleSidebarFalse = () => {
     dispatch(setSidebar(false));
   };
+  
 
   return (
     <div>
@@ -69,12 +73,13 @@ function Navbar() {
             <IconButton size="large" edge="start" color="inherit" aria-label="menu" sx={{ mr: 2 }}>
               <MenuIcon />
             </IconButton>
-            <Typography variant="h2" component="div" color="secondary" sx={{ flexGrow: 1 }}>
+            <Typography variant="h4" component="div" color="secondary" sx={{ flexGrow: 1 }}>
               Movie Star
             </Typography>
             <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Home</Button>
             <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Movies</Button>
             <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Popular Movies</Button>
+            
           </Toolbar>
         </AppBar>
       </Box>
