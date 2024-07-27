@@ -20,13 +20,11 @@ const theme = createTheme({
             contrastText: '#000',
         }
     },
-   breakpoints:{
-    xs: 0,
-    sm: 400,
-    md: 700,
-    lg: 1200,
-    xl: 1536,
-   }
+    typography:{
+        fontFamily:'Roboto',
+        fontSize:18
+    }
+  
     
     
    
