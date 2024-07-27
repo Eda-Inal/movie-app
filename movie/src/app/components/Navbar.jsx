@@ -2,21 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSidebar } from '../redux/movieSlice';
 import styles from './styles.module.css';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import List from '@mui/material/List';
-import { ListItemButton, ListItemText, Tooltip } from '@mui/material';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import MovieFilterOutlinedIcon from '@mui/icons-material/MovieFilterOutlined';
-import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { AppBar, Box, Toolbar, Typography, Button, IconButton, List, ListItemButton, ListItemText, Tooltip } from '@mui/material';
+import { Menu as MenuIcon, ArrowBackIos as ArrowBackIosIcon, ArrowForwardIosOutlined as ArrowForwardIosOutlinedIcon, HomeOutlined as HomeOutlinedIcon, MovieFilterOutlined as MovieFilterOutlinedIcon, FavoriteBorderOutlined as FavoriteBorderOutlinedIcon } from '@mui/icons-material';
 import { useTheme, keyframes, styled } from '@mui/material/styles';
+
 
 const slideIn = keyframes`
   from {
@@ -62,6 +51,7 @@ function Navbar() {
   const dispatch = useDispatch();
   const isSidebar = useSelector((state) => state.movie.isSidebar);
   const theme = useTheme();
+
 
   const handleSidebarTrue = () => {
     dispatch(setSidebar(true));
