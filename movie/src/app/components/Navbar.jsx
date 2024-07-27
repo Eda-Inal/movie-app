@@ -11,7 +11,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import { ListItemButton, ListItemIcon, ListItemText, Tooltip } from '@mui/material';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-
+import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import MovieFilterOutlinedIcon from '@mui/icons-material/MovieFilterOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -24,6 +24,7 @@ function Navbar() {
       <AppBar position="static">
         <Toolbar>
           <IconButton
+          
             size="large"
             edge="start"
             color="inherit"
@@ -43,8 +44,15 @@ function Navbar() {
         </Toolbar>
       </AppBar>
         </Box>
-        <Box marginTop={1} width={200} borderRight={1} sx={{ display: { xs: 'block', sm: 'none'  } }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1 }}>
+        <Box marginTop={4} >
+          
+          <ArrowForwardIosOutlinedIcon sx={{cursor:"pointer"}} color='accent'/>
+          
+        </Box>
+        
+
+        {/* <Box  borderRadius={5} marginTop={1} width={200} borderRight={1}   sx={{ display: { xs: 'block', sm: 'none' , backgroundImage:"  linear-gradient(to right top, #00c6b7, #00a8af, #008aa0, #006c8a, #005070, #024261, #033552, #022943, #02263e, #012239, #011f34, #011c2f)" } }}>
+        <Box  sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1 }}>
           <Typography variant="h6" component="div">Dashboard</Typography>
           <Tooltip title="close">
           <Button sx={{ cursor: 'pointer' }}>
@@ -69,7 +77,7 @@ function Navbar() {
           </ListItemButton>
         </List>
          
-        </Box>
+        </Box> */}
       
   
         
