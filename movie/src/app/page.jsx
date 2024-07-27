@@ -1,11 +1,12 @@
-import variables from './variables.module.scss'
-import styles from "./global.css"
-import { Button } from '@mui/material';
+'use client'
+
+import "./global.css"
 
 export default function Home() {
+
   return (
     <>
-  
+ 
    </>
   );
 }
