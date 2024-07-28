@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSidebar } from '../redux/movieSlice';
+import { setSidebar,setIsDark } from '../redux/movieSlice';
 import styles from './styles.module.css';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton, List, ListItemButton, ListItemText, Tooltip } from '@mui/material';
 import { Menu as MenuIcon, ArrowBackIos as ArrowBackIosIcon, ArrowForwardIosOutlined as ArrowForwardIosOutlinedIcon, HomeOutlined as HomeOutlinedIcon, MovieFilterOutlined as MovieFilterOutlinedIcon, FavoriteBorderOutlined as FavoriteBorderOutlinedIcon } from '@mui/icons-material';
 import { useTheme, keyframes, styled } from '@mui/material/styles';
-import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
-import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+
+
 
 
 const slideIn = keyframes`
@@ -52,6 +54,7 @@ const Sidebar = styled(Box, {
 function Navbar() {
   const dispatch = useDispatch();
   const isSidebar = useSelector((state) => state.movie.isSidebar);
+  const isDark = useSelector((state) => state.movie.isDark)
 
   const theme = useTheme();
 
@@ -63,6 +66,10 @@ function Navbar() {
   const handleSidebarFalse = () => {
     dispatch(setSidebar(false));
   };
+  const handleChangeIcon = () => {
+    dispatch(setIsDark());
+  }
+  console.log(isDark);
   
 
   return (
@@ -79,6 +86,12 @@ function Navbar() {
             <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Home</Button>
             <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Movies</Button>
             <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Popular Movies</Button>
+            <Button onClick={handleChangeIcon} >
+              {
+                isDark ?  <LightModeIcon color='accent' /> :  <DarkModeIcon color='accent' />
+              }
+             </Button>
+          
             
           </Toolbar>
         </AppBar>
@@ -88,6 +101,7 @@ function Navbar() {
           <Button onClick={handleSidebarTrue} sx={{ marginTop: '10px', cursor: 'pointer', display: { xs: 'block', sm: 'none' } }}>
             <ArrowForwardIosOutlinedIcon color="accent" />
           </Button>
+          
         </Tooltip>
       )}
       <Sidebar isSidebar={isSidebar}>

@@ -4,6 +4,7 @@ export const movieSlice= createSlice({
 name:'movie',
 initialState:{
     isSidebar:true,
+    isDark:true
 
 },
 reducers : {
@@ -11,8 +12,11 @@ reducers : {
 setSidebar:(state,action) => {
     state.isSidebar = action.payload
 },
+setIsDark : (state) => {
+    state.isDark = !state.isDark
+}
 
 }
 })
-export const {setSidebar} = movieSlice.actions
+export const {setSidebar,setIsDark} = movieSlice.actions
 export default movieSlice.reducer
