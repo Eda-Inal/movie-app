@@ -8,6 +8,7 @@ import { useTheme, keyframes, styled } from '@mui/material/styles';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import CloseIcon from '@mui/icons-material/Close';
+import Link from 'next/link';
 
 
 
@@ -82,7 +83,7 @@ function Navbar() {
             <Typography variant="h4" component="div" color="secondary" sx={{ flexGrow: 1 }}>
               Movie Star
             </Typography>
-            <Button color='textColor'  sx={{ display: { xs: 'none', lg: 'block' } }}>Home</Button>
+            <Button   sx={{ display: { xs: 'none', lg: 'block' } }}><Link style={{textDecoration:"none", color:"white"}}   href='/home' >Home</Link></Button>
             <Button color='textColor'  sx={{ display: { xs: 'none', lg: 'block' } }}>Movies</Button>
             <Button color='textColor' sx={{ display: { xs: 'none',lg: 'block' } }}>Popular Movies</Button>
             <Button  onClick={handleChangeIcon} >
