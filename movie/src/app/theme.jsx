@@ -4,24 +4,30 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: "#032d4a",
+      main: "#1F3864",
     },
     secondary: {
-      main: "#00C6B7",
+      main: "#618CF6",
       contrastText: '#fff',
     },
     accent: {
-      main: "#FFF7D6"
+      main: "#5EECBE"
+    },
+    textColor:{
+        main:"#fff"
     },
     error: {
       main: "#DA4242"
     },
+    themeColor:{
+        main: "#F9F871"
+            },
     success: {
       main: "#1ECB12",
       contrastText: '#000',
     },
     background: {
-      default: "#032d4a",
+      default: "#313549",
       paper: "#032d4a"
     },
     text: {
@@ -29,7 +35,7 @@ const darkTheme = createTheme({
     }
   },
   typography: {
-    fontFamily: 'Roboto',
+fontFamily:  "Roboto",
     fontSize: 18,
   }
 });
@@ -41,11 +47,17 @@ const lightTheme = createTheme({
       main: "#032d4a",
     },
     secondary: {
-      main: "#00C6B7",
+      main: "#618CF6",
       contrastText: '#fff',
     },
+    textColor:{
+        main:"#3A3B3C"
+    },
+    themeColor:{
+main: "#313549"
+    },
     accent: {
-      main: "#FFF7D6"
+      main: "#70FACB"
     },
     error: {
       main: "#DA4242"
@@ -55,15 +67,15 @@ const lightTheme = createTheme({
       contrastText: '#000',
     },
     background: {
-      default: "#fff",
+      default: "#F1F1E6",
       paper: "#fff"
     },
     text: {
-      primary: "#000",
+      primary: "#3A3B3C",
     }
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Open sans',
     fontSize: 18,
   }
 });

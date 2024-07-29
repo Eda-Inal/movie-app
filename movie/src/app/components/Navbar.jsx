@@ -83,12 +83,12 @@ function Navbar() {
             <Typography variant="h4" component="div" color="secondary" sx={{ flexGrow: 1 }}>
               Movie Star
             </Typography>
-            <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Home</Button>
-            <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Movies</Button>
-            <Button color="inherit" sx={{ display: { xs: 'none', sm: 'block' } }}>Popular Movies</Button>
-            <Button onClick={handleChangeIcon} >
+            <Button color='textColor'  sx={{ display: { xs: 'none', sm: 'block' } }}>Home</Button>
+            <Button color='textColor'  sx={{ display: { xs: 'none', sm: 'block' } }}>Movies</Button>
+            <Button color='textColor' sx={{ display: { xs: 'none', sm: 'block' } }}>Popular Movies</Button>
+            <Button  onClick={handleChangeIcon} >
               {
-                isDark ?  <LightModeIcon color='accent' /> :  <DarkModeIcon color='accent' />
+                isDark ?  <LightModeIcon color='themeColor' /> :  <DarkModeIcon color='themeColor' />
               }
              </Button>
           
