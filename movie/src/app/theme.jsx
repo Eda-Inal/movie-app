@@ -34,11 +34,15 @@ const darkTheme = createTheme({
       primary: "#fff",
     }
   },
+
+  
   typography: {
 fontFamily:  "Roboto",
     fontSize: 18,
-  }
+  },
+  
 });
+
 
 const lightTheme = createTheme({
   palette: {
