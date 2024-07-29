@@ -7,6 +7,7 @@ import { Menu as MenuIcon, ArrowBackIos as ArrowBackIosIcon, ArrowForwardIosOutl
 import { useTheme, keyframes, styled } from '@mui/material/styles';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -34,19 +35,19 @@ const Sidebar = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isSidebar'
 })(({ isSidebar, theme }) => ({
   position: 'fixed',
-  top: 48,
+top:55,
   left: 0,
   height: '100%',
-  width: 200,
-
-  borderRight: `1px solid ${theme.palette.divider}`,
+  width: 250,
+marginTop:8,
+  borderRight: ` 1px solid ${theme.palette.divider} `,
   animation: `${isSidebar ? slideIn : slideOut} 0.5s ease-in-out forwards`,
   display: 'flex',
   flexDirection: 'column',
   padding: theme.spacing(2),
   boxSizing: 'border-box',
   zIndex: 1300,
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up('lg')]: {
     display: 'none',
   },
 }));
@@ -81,35 +82,42 @@ function Navbar() {
             <Typography variant="h4" component="div" color="secondary" sx={{ flexGrow: 1 }}>
               Movie Star
             </Typography>
-            <Button color='textColor'  sx={{ display: { xs: 'none', sm: 'block' } }}>Home</Button>
-            <Button color='textColor'  sx={{ display: { xs: 'none', sm: 'block' } }}>Movies</Button>
-            <Button color='textColor' sx={{ display: { xs: 'none', sm: 'block' } }}>Popular Movies</Button>
+            <Button color='textColor'  sx={{ display: { xs: 'none', lg: 'block' } }}>Home</Button>
+            <Button color='textColor'  sx={{ display: { xs: 'none', lg: 'block' } }}>Movies</Button>
+            <Button color='textColor' sx={{ display: { xs: 'none',lg: 'block' } }}>Popular Movies</Button>
             <Button  onClick={handleChangeIcon} >
               {
-                isDark ?  <LightModeIcon color='themeColor' /> :  <DarkModeIcon color='themeColor' />
+                isDark ?  <LightModeIcon sx={{ display: { xs: 'none',lg: 'block' } }} color='themeColor' /> :  <DarkModeIcon sx={{ display: { xs: 'none',lg: 'block' } }}color='themeColor' />
               }
              </Button>
+             {
+              isSidebar &&(
+                <Tooltip title="Close the menu">
+                <Button sx={{ cursor: 'pointer',marginTop: '10px',display: { xs: 'block', lg: 'none' } }}  onClick={handleSidebarFalse}>
+                  <CloseIcon color="accent"  />
+                </Button>
+              </Tooltip>
+              )
+             }
+            
+          {!isSidebar && (
+        <Tooltip title="See the menu">
+          <Button onClick={handleSidebarTrue} sx={{ marginTop: '10px', cursor: 'pointer', display: { xs: 'block', lg: 'none' } }}>
+            <MenuIcon color="accent" />
+          </Button>
+          
+        </Tooltip>
+      )}
           
             
           </Toolbar>
         </AppBar>
       </Box>
-      {!isSidebar && (
-        <Tooltip title="See the menu">
-          <Button onClick={handleSidebarTrue} sx={{ marginTop: '10px', cursor: 'pointer', display: { xs: 'block', sm: 'none' } }}>
-            <ArrowForwardIosOutlinedIcon color="accent" />
-          </Button>
-          
-        </Tooltip>
-      )}
+   
       <Sidebar isSidebar={isSidebar}>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1 }}>
           <Typography variant="h6" component="div">Dashboard</Typography>
-          <Tooltip title="Close the menu">
-            <Button sx={{ cursor: 'pointer' }} onClick={handleSidebarFalse}>
-              <ArrowBackIosIcon color="accent" fontSize="small" />
-            </Button>
-          </Tooltip>
+          
         </Box>
         <List>
           <ListItemButton>
@@ -122,7 +130,14 @@ function Navbar() {
           </ListItemButton>
           <ListItemButton>
             <FavoriteBorderOutlinedIcon className={styles.icon} color="secondary" />
-            <ListItemText>Best Movies</ListItemText>
+            <ListItemText >Best Movies</ListItemText>
+          </ListItemButton>
+          <ListItemButton onClick={handleChangeIcon}>
+          
+              {
+                isDark ?  <LightModeIcon className={styles.icon}   color='themeColor' /> :  <DarkModeIcon className={styles.icon}   color='themeColor' />
+              }
+          <ListItemText>Mode</ListItemText>
           </ListItemButton>
         </List>
       </Sidebar>

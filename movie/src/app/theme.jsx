@@ -1,6 +1,18 @@
 import { createTheme } from "@mui/material/styles";
 
 const darkTheme = createTheme({
+    
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 900,
+                lg: 1200,
+                xl: 1536,
+          },
+        },
+  
+ 
   palette: {
     mode: 'dark',
     primary: {
@@ -11,10 +23,13 @@ const darkTheme = createTheme({
       contrastText: '#fff',
     },
     accent: {
-      main: "#5EECBE"
+      main: "#00B6C2"
     },
     textColor:{
         main:"#fff"
+    },
+    sideBarColor : {
+        main:"#373C52"
     },
     error: {
       main: "#DA4242"
@@ -61,7 +76,7 @@ const lightTheme = createTheme({
 main: "#313549"
     },
     accent: {
-      main: "#70FACB"
+      main: "#00B6C2"
     },
     error: {
       main: "#DA4242"
@@ -69,6 +84,9 @@ main: "#313549"
     success: {
       main: "#1ECB12",
       contrastText: '#000',
+    },
+    sideBarColor : {
+        main:"#DDDDD2"
     },
     background: {
       default: "#F1F1E6",
