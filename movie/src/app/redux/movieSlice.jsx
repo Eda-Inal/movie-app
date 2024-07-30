@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const movieSlice= createSlice({
 name:'movie',
 initialState:{
-    isSidebar:true,
+    isSidebar:false,
     isDark:true
 
 },

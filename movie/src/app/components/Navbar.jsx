@@ -84,7 +84,13 @@ function Navbar() {
             <Typography variant="h4" component="div" color="secondary" sx={{ flexGrow: 1 }}>
               Movie Star
             </Typography>
-            <Button   sx={{ display: { xs: 'none', lg: 'block' } }}><Link style={{textDecoration:"none", color:"white"}}   href='/home' >Home</Link></Button>
+            <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
+              <Link href="/home" passHref sx={{ textDecoration: 'none' }}>
+                <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none' }}>
+                  Home
+                </Typography>
+              </Link>
+            </Button>
             <Button color='textColor'  sx={{ display: { xs: 'none', lg: 'block' } }}>Movies</Button>
             <Button color='textColor' sx={{ display: { xs: 'none',lg: 'block' } }}>Popular Movies</Button>
             <Button  onClick={handleChangeIcon} >
