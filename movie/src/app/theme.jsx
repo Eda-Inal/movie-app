@@ -19,17 +19,17 @@ const darkTheme = createTheme({
       main: "#1F3864",
     },
     secondary: {
-      main: "#618CF6",
+      main: "#00C6C2",
       contrastText: '#fff',
     },
     accent: {
-      main: "#00B6C2"
+      main: "#00B38A"
     },
     textColor:{
         main:"#fff"
     },
     sideBarColor : {
-        main:"#373C52"
+        main:"#2D2D30"
     },
     error: {
       main: "#DA4242"
@@ -42,7 +42,7 @@ const darkTheme = createTheme({
       contrastText: '#000',
     },
     background: {
-      default: "#313549",
+      default: "#1c1c1e",
       paper: "#032d4a"
     },
     text: {
@@ -66,7 +66,7 @@ const lightTheme = createTheme({
       main: "#032d4a",
     },
     secondary: {
-      main: "#618CF6",
+      main: "#00C6C2",
       contrastText: '#fff',
     },
     textColor:{
@@ -76,7 +76,7 @@ const lightTheme = createTheme({
 main: "#313549"
     },
     accent: {
-      main: "#00B6C2"
+      main: "#00B38A"
     },
     error: {
       main: "#DA4242"

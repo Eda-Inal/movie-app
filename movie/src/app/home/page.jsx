@@ -1,16 +1,20 @@
+'use client'
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Grid, Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
 import her from "../../../public/her.jpg";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 function Home() {
+  const isDark = useSelector((state) => state.movie.isDark);
   return (
     <>
       <Box 
         sx={{
-          width: '95%',
+          width: '80%',
           height: '50vh',
           margin: '0 auto',
           position: 'relative',
@@ -19,7 +23,8 @@ function Home() {
           justifyContent: 'center',
           overflow: 'hidden',
           marginTop: '10px' ,
-          background: 'rgba(0, 0, 0, 0.5)' 
+          background: 'rgba(0, 0, 0, 0.5)' ,
+          borderRadius: '16px',
         }}
       >
         <Image
@@ -42,7 +47,7 @@ function Home() {
             gap: '8px'
           }}
         >
-          <Typography variant="h3">Titanic</Typography>
+          <Typography variant="h4">Titanic</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography variant="body1">Romance</Typography>
             <Typography variant="body1">3h 15m</Typography>
@@ -56,7 +61,7 @@ function Home() {
 
       <Box 
         sx={{
-          width: '70%',
+          width: '80%',
           margin: '0 auto',
           padding: '16px 0'
         }}
@@ -67,8 +72,9 @@ function Home() {
               <Box
                 sx={{
                   position: 'relative',
-                  height: 200, //
-                  borderRadius: '4px',
+                  height: 200, 
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
                   overflow: 'hidden',
                   cursor: 'pointer',
                     transition: 'transform 0.3s ease',
@@ -84,7 +90,7 @@ function Home() {
                     backgroundImage: `url(${her.src})`, 
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
-                    opacity: 0.5
+                    opacity: isDark ? "0.5" : "0.8"
                   }
                 }}
               >
@@ -95,11 +101,12 @@ function Home() {
                     left: 8,
                     color: 'white',
                     display: 'flex',
+                    alignItems: 'center',
                     justifyContent: 'space-around',
                     width: 'calc(100% - 16px)',
                     padding: '4px 8px',
-                   
-                    borderRadius: '4px'
+                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                    borderRadius: '9px'
                   }}
                 >
                   <Typography variant="body2">Titanic</Typography>
