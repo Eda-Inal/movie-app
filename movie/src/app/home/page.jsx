@@ -1,12 +1,14 @@
 'use client'
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Grid, Box, Button, Typography } from '@mui/material';
+import { Grid, Box, Button, Typography ,Divider} from '@mui/material';
 import Image from 'next/image';
 import her from "../../../public/her.jpg";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import CloseIcon from '@mui/icons-material/Close';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 function Home() {
   const isDark = useSelector((state) => state.movie.isDark);
@@ -25,6 +27,10 @@ function Home() {
           marginTop: '10px' ,
           background: 'rgba(0, 0, 0, 0.5)' ,
           borderRadius: '16px',
+          cursor: 'pointer',
+                    transition: 'transform 0.3s ease',
+                     '&:hover': {
+                    transform: 'scale(1.02)'},
         }}
       >
         <Image
@@ -44,7 +50,8 @@ function Home() {
             borderRadius: '4px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '8px'
+            gap: '8px',
+            
           }}
         >
           <Typography variant="h4">Titanic</Typography>
@@ -53,7 +60,7 @@ function Home() {
             <Typography variant="body1">3h 15m</Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: '8px' }}>
-            <Button variant="contained" color="secondary">Watch Now <PlayCircleOutlineIcon /></Button>
+            <Button variant="contained" color="secondary"  >Watch Now <PlayCircleOutlineIcon /></Button>
             <Button variant="outlined" color="secondary">Add to Wishlist</Button>
           </Box>
         </Box>
@@ -67,7 +74,7 @@ function Home() {
         }}
       >
         <Grid container spacing={2}>
-          {[...Array(8)].map((_, index) => (
+          {[...Array(12)].map((_, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
               <Box
                 sx={{
@@ -131,6 +138,93 @@ function Home() {
           <Button variant="contained" color="secondary">Load More</Button>
         </Box>
       </Box>
+      <Box
+      sx={{
+        maxWidth: "400px",
+        height: "auto",
+        backgroundColor: "#1c1c1e",
+        position: 'absolute',
+        marginRight: "auto",
+        marginLeft: "auto",
+        borderRadius: "16px",
+        top: "30%",
+        left: 0,
+        right: 0,
+        padding: "20px",
+        backgroundImage: "linear-gradient(to bottom, #1c1c1e, #2c2c2e)"
+      }}
+    >
+      <Box sx={{ position: "relative" }}>
+        <CloseIcon
+          fontSize='medium'
+          color='secondary'
+          sx={{
+            position: "absolute",
+            cursor: "pointer",
+            right: 5,
+            top: 5,
+            '&:hover': {
+              fontSize: "35px"
+            },
+          }}
+        />
+      </Box>
+      
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginBottom: "20px",
+        }}
+      >
+        <Image src={her} width={100} height={100} alt="Movie Poster" />
+      </Box>
+
+      <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }} />
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems:"center", margin: "10px 20px" }}>
+        <Typography variant='h6'>Directors:</Typography>
+        <Typography variant='body1'>Director Name</Typography>
+      </Box>
+
+      <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }} />
+
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', margin: "10px 20px",alignItems:"center" }}>
+        <Typography variant='h6'>Stars:</Typography>
+        <Typography variant='body1'>Star Names</Typography>
+      </Box>
+
+      <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }} />
+
+      <Box sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: "10px 20px",
+      }}>
+        <Box>
+          <Typography variant='h6'>IMDB:</Typography>
+          <Typography variant='body1'>8.3</Typography>
+        </Box>
+        <Box>
+          <Typography variant='h6'>Votes:</Typography>
+          <Box sx={{ display: 'flex', gap: "5px" }}>
+            <StarBorderOutlinedIcon />
+            <StarBorderOutlinedIcon />
+            <StarBorderOutlinedIcon />
+            <StarBorderOutlinedIcon />
+            <StarBorderOutlinedIcon />
+          </Box>
+        </Box>
+      </Box>
+
+      <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }} />
+
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
+        <Button variant="contained" color="secondary">More Details</Button>
+      </Box>
+    </Box>
     </>
   );
 }
