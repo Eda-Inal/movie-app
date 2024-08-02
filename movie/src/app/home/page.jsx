@@ -9,6 +9,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CloseIcon from '@mui/icons-material/Close';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+import Link from 'next/link';
 
 function Home() {
   const isDark = useSelector((state) => state.movie.isDark);
@@ -222,7 +223,7 @@ function Home() {
       <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }} />
 
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
-        <Button variant="contained" color="secondary">More Details</Button>
+        <Button variant="contained" color="secondary"><Link href='/details'>More Details</Link></Button>
       </Box>
     </Box>
     </>
