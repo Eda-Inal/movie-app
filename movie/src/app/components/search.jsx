@@ -7,7 +7,7 @@ function Search() {
    <Box
    sx={{
 display:"flex",
-  my:"30px",
+  my:"15px",
     justifyContent:"center"
 
    }}
@@ -20,7 +20,11 @@ sx={{
     '& .MuiOutlinedInput-root':{
         borderRadius:"30px",
         height:"40px"
-    },
+    },'& fieldset':{
+      borderColor:"gray"  
+    },'&:hover fieldset': {
+        borderColor:"gray"
+    }
     
  
 }}
@@ -32,7 +36,7 @@ placeholder='search movie'
  InputProps={{
     endAdornment:(
         <IconButton>
-            <SearchIcon color='accent'/>
+            <SearchIcon color='accent' />
         </IconButton>
     )
  }}
