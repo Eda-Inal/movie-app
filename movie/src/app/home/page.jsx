@@ -11,10 +11,14 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CloseIcon from '@mui/icons-material/Close';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import Link from 'next/link';
-
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 
 function Home() {
   const isDark = useSelector((state) => state.movie.isDark);
+  const genres = [
+    "Action", "Comedy", "Drama", "Fantasy", "Horror",
+    "Mystery", "Romance", "Thriller", "Western", "Sci-Fi"
+  ];
   return (
     <>
     <Search/>
@@ -64,8 +68,8 @@ function Home() {
             <Typography variant="body1">3h 15m</Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: '8px' }}>
-            <Button variant="contained" color="secondary"  >Watch Now <PlayCircleOutlineIcon /></Button>
-            <Button variant="outlined" color="secondary">Add to Wishlist</Button>
+            <Button variant="contained" color="secondary"  ><PlayCircleOutlineIcon fontSize='small' /> Watch Now </Button>
+            <Button variant="outlined" color="secondary"><AddCircleOutlineRoundedIcon fontSize='small'/>Add to Wishlist</Button>
           </Box>
         </Box>
       </Box>
@@ -77,61 +81,89 @@ function Home() {
           padding: '16px 0'
         }}
       >
-        <Grid container spacing={2}>
-          {[...Array(12)].map((_, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-              <Box
-                sx={{
-                  position: 'relative',
-                  height: 200, 
-                  borderRadius: '16px',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                    transition: 'transform 0.3s ease',
-                     '&:hover': {
-                    transform: 'scale(1.05)'},
-                  '&:before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: `url(${her.src})`, 
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    opacity: isDark ? "0.5" : "0.8"
-                  }
-                }}
-              >
+    <Grid container spacing={2}>
+        <Grid item xs={12} md={8}>
+          <Grid container spacing={2}>
+            {[...Array(12)].map((_, index) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
                 <Box
                   sx={{
-                    position: 'absolute',
-                    bottom: 8,
-                    left: 8,
-                    color: 'white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-around',
-                    width: 'calc(100% - 16px)',
-                    padding: '4px 8px',
-                    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                    borderRadius: '9px'
+                    position: 'relative',
+                    height: 200,
+                    borderRadius: '16px',
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'transform 0.3s ease',
+                    '&:hover': {
+                      transform: 'scale(1.05)'
+                    },
+                    '&:before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      backgroundImage: `url(${her.src})`, 
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      opacity: isDark ? "0.5" : "0.8"
+                    }
                   }}
                 >
-                  <Typography variant="body2">Titanic</Typography>
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                    <Typography variant="body2">8.3</Typography>
-                    <FavoriteBorderIcon fontSize="small" />
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 8,
+                      left: 8,
+                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-around',
+                      width: 'calc(100% - 16px)',
+                      padding: '4px 8px',
+                      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                      borderRadius: '9px'
+                    }}
+                  >
+                    <Typography variant="body2">Titanic</Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                      <Typography variant="body2">8.3</Typography>
+                      <FavoriteBorderIcon fontSize="small" />
+                    </Box>
                   </Box>
-                 
-               
                 </Box>
-              </Box>
-            </Grid>
-          ))}
+              </Grid>
+            ))}
+          </Grid>
         </Grid>
+        <Grid item xs={12} md={4}>
+          <Box>
+            {genres.map((genre, index) => (
+           <Button
+           key={index}
+           variant="outlined"
+           sx={{
+             width: '100%',
+             marginBottom: '8px',
+             color: isDark ? "white" : "#000",
+             borderColor: 'rgba(128, 128, 128, 0.6)',
+             borderWidth: '2px',
+             borderRadius: '8px',
+             transition: 'all 0.3s ease',
+             '&:hover': {
+               backgroundColor: 'rgba(128, 128, 128, 0.2)', 
+               borderColor: 'rgba(128, 128, 128, 0.8)',
+             }
+           }}
+         >
+           {genre}
+         </Button>
+            ))}
+          </Box>
+        </Grid>
+      </Grid>
         <Box 
           sx={{
             display: 'flex',
