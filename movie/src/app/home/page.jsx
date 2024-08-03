@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import Search from '../components/search';
 import { useSelector } from 'react-redux';
 import { Grid, Box, Button, Typography ,Divider} from '@mui/material';
 import Image from 'next/image';
@@ -11,10 +12,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import Link from 'next/link';
 
+
 function Home() {
   const isDark = useSelector((state) => state.movie.isDark);
   return (
     <>
+    <Search/>
       <Box 
         sx={{
           width: '80%',
@@ -139,7 +142,7 @@ function Home() {
           <Button variant="contained" color="secondary">Load More</Button>
         </Box>
       </Box>
-      <Box
+      {/* <Box
       sx={{
         maxWidth: "400px",
         height: "auto",
@@ -225,7 +228,7 @@ function Home() {
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
         <Button variant="contained" color="secondary"><Link href='/details'>More Details</Link></Button>
       </Box>
-    </Box>
+    </Box> */}
     </>
   );
 }
