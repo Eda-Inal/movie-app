@@ -35,7 +35,7 @@ const darkTheme = createTheme({
       main: "#DA4242"
     },
     themeColor:{
-        main: "#F9F871"
+        main: "#ECF31A"
             },
     success: {
       main: "#1ECB12",
@@ -73,7 +73,7 @@ const lightTheme = createTheme({
         main:"#3A3B3C"
     },
     themeColor:{
-main: "#313549"
+main: "#06319B"
     },
     accent: {
       main: "#00B38A"
