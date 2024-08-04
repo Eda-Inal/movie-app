@@ -73,7 +73,8 @@ function Home() {
           </Box>
         </Box>
       </Box>
-
+     
+     
       <Box 
         sx={{
           width: '80%',
@@ -135,8 +136,18 @@ function Home() {
                   </Box>
                 </Box>
               </Grid>
+              
             ))}
-          </Grid>
+           
+            
+          </Grid><Box sx={{
+            display:"flex",
+            justifyContent:"center",
+            marginTop:"1rem"
+          }}> 
+<Button variant="contained"  color="secondary">Load More</Button>
+          </Box>
+          
         </Grid>
         <Grid item xs={12} md={4}>
           <Box>
@@ -171,7 +182,7 @@ function Home() {
             marginTop: '16px'
           }}
         >
-          <Button variant="contained" color="secondary">Load More</Button>
+          
         </Box>
       </Box>
       {/* <Box
