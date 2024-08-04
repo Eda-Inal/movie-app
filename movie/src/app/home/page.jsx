@@ -21,7 +21,7 @@ function Home() {
   ];
   return (
     <>
-    <Search/>
+
       <Box 
         sx={{
           width: '80%',

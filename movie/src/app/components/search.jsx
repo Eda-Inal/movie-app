@@ -7,12 +7,18 @@ function Search() {
    <Box
    sx={{
 display:"flex",
-  my:"15px",
+  my:{
+lg:"15px"
+  },
     justifyContent:"center"
 
    }}
    >
-    <Box width={500}  >
+    <Box sx={{
+      xs:"60px",
+      md:"150px",
+      lg:"400px"
+    }}  >
     <TextField
 sx={{
     width:"100%",
