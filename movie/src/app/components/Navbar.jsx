@@ -81,15 +81,27 @@ function Navbar() {
               <Search />
             </Box>
             <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-              <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
-                <Link href="/home" passHref sx={{ textDecoration: 'none' }}>
-                  <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none' }}>
-                    Home
-                  </Typography>
-                </Link>
-              </Button>
-              <Button color='textColor' sx={{ display: { xs: 'none', lg: 'block' } }}>Movies</Button>
-              <Button color='textColor' sx={{ display: { xs: 'none', lg: 'block' } }}>Popular Movies</Button>
+            <Link href="/home" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
+      <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
+        Home
+      </Typography>
+    </Button>
+  </Link>
+  <Link href="/watchlist" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
+      <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
+        Watchlist
+      </Typography>
+    </Button>
+  </Link>
+  <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
+      <Typography  component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
+        Best Movies
+      </Typography>
+    </Button>
+  </Link>
               <Button onClick={handleChangeIcon}>
                 {
                   isDark ? <LightModeIcon sx={{ display: { xs: 'none', lg: 'block' } }} color='themeColor' /> : <DarkModeIcon sx={{ display: { xs: 'none', lg: 'block' } }} color='themeColor' />
@@ -119,29 +131,35 @@ function Navbar() {
 
       <Sidebar isSidebar={isSidebar} >
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1 }}>
-          <Typography variant="h6" component="div">Dashboard</Typography>
+          <Typography variant="h6" component="div" sx={{ textTransform: 'capitalize' }}>Dashboard</Typography>
         </Box>
         <List>
           <Box>
             <Search />
           </Box>
-          <ListItemButton>
-            <HomeOutlinedIcon className={styles.icon} color="secondary" />
-            <ListItemText>Home</ListItemText>
-          </ListItemButton>
-          <ListItemButton>
-            <MovieFilterOutlinedIcon className={styles.icon} color="secondary" />
-            <ListItemText>Movies</ListItemText>
-          </ListItemButton>
-          <ListItemButton>
-            <FavoriteBorderOutlinedIcon className={styles.icon} color="secondary" />
-            <ListItemText>Best Movies</ListItemText>
-          </ListItemButton>
+          <Link href="/home" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+            <ListItemButton>
+              <HomeOutlinedIcon className={styles.icon} color="secondary" />
+              <ListItemText primary="Home" sx={{ textTransform: 'capitalize' }} />
+            </ListItemButton>
+          </Link>
+          <Link href="/watchlist" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+            <ListItemButton>
+              <MovieFilterOutlinedIcon className={styles.icon} color="secondary" />
+              <ListItemText primary="Watchlist" sx={{ textTransform: 'capitalize' }} />
+            </ListItemButton>
+          </Link>
+          <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+            <ListItemButton>
+              <FavoriteBorderOutlinedIcon className={styles.icon} color="secondary" />
+              <ListItemText primary="Best Movies" sx={{ textTransform: 'capitalize' }} />
+            </ListItemButton>
+          </Link>
           <ListItemButton onClick={handleChangeIcon}>
             {
               isDark ? <LightModeIcon className={styles.icon} color='themeColor' /> : <DarkModeIcon className={styles.icon} color='themeColor' />
             }
-            <ListItemText>Mode</ListItemText>
+            <ListItemText primary="Mode" sx={{ textTransform: 'capitalize' }} />
           </ListItemButton>
         </List>
       </Sidebar>

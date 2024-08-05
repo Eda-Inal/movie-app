@@ -68,8 +68,8 @@ function Home() {
             <Typography variant="body1">3h 15m</Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: '8px' }}>
-            <Button variant="contained" color="secondary"  ><PlayCircleOutlineIcon fontSize='small' /> Watch Now </Button>
-            <Button variant="outlined" color="secondary"><AddCircleOutlineRoundedIcon fontSize='small'/>Add to Wishlist</Button>
+            <Button variant="contained" color="secondary" sx={{textTransform: 'capitalize'}} ><PlayCircleOutlineIcon fontSize='small' /> Watch Now </Button>
+            <Button variant="outlined" sx={{textTransform: 'capitalize'}} color="secondary"><AddCircleOutlineRoundedIcon fontSize='small'/>Add to Wishlist</Button>
           </Box>
         </Box>
       </Box>
@@ -158,6 +158,7 @@ function Home() {
            sx={{
              width: '100%',
              marginBottom: '8px',
+             textTransform: 'capitalize',
              color: isDark ? "white" : "#000",
              borderColor: 'rgba(128, 128, 128, 0.6)',
              borderWidth: '2px',
@@ -269,8 +270,13 @@ function Home() {
       <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }} />
 
       <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: "20px" }}>
-        <Button variant="contained" color="secondary"><Link href='/details'>More Details</Link></Button>
-      </Box>
+  <Button variant="contained" color="secondary" sx={{textTransform: 'capitalize'}}>
+    <Link href='/details' passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+      More Details
+    </Link>
+  </Button>
+</Box>
+
     </Box> */}
     </>
   );
