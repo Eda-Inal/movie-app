@@ -69,7 +69,20 @@ function Home() {
           </Box>
           <Box sx={{ display: 'flex', gap: '8px' }}>
             <Button variant="contained" color="secondary" sx={{textTransform: 'capitalize'}} ><PlayCircleOutlineIcon fontSize='small' /> Watch Now </Button>
-            <Button variant="outlined" sx={{textTransform: 'capitalize'}} color="secondary"><AddCircleOutlineRoundedIcon fontSize='small'/>Add to Wishlist</Button>
+            <Button 
+  variant="outlined" 
+  color="secondary" 
+  sx={{ 
+    textTransform: 'capitalize', 
+    borderWidth: '2px', 
+    borderColor: 'secondary.main', 
+    
+    backdropFilter: 'blur(15px)' 
+  }}
+>
+  <AddCircleOutlineRoundedIcon fontSize='small' /> Add to Wishlist
+</Button>
+
           </Box>
         </Box>
       </Box>
