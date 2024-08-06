@@ -40,7 +40,7 @@ const ScrollToTop = () => {
               transform: 'translateY(-10px)' 
               }
           }}
-          onClick={scrollTop}
+          onMouseEnter={scrollTop}
         />
       )}
     </>
