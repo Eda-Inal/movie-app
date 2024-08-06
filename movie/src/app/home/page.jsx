@@ -125,7 +125,11 @@ function Home() {
             <Typography variant="body1">Romance</Typography>
             <Typography variant="body1">3h 15m</Typography>
           </Box>
-          <Box sx={{ display: 'flex', gap: '8px' }}>
+          <Box sx={{ display: 'flex', gap: '8px',
+ flexDirection: { xs: 'column', sm: 'row' }, 
+
+
+           }}>
             <Button variant="contained" color="secondary" sx={{textTransform: 'capitalize'}} ><PlayCircleOutlineIcon fontSize='small' /> Watch Now </Button>
             <Button 
   variant="outlined" 
@@ -135,7 +139,7 @@ function Home() {
     borderWidth: '2px', 
     borderColor: 'secondary.main', 
     
-    backdropFilter: 'blur(15px)' 
+    backdropFilter: 'blur(50px)' 
   }}
 >
   <AddCircleOutlineRoundedIcon fontSize='small' /> Add to Wishlist
@@ -154,7 +158,7 @@ function Home() {
         }}
       >
     <Grid container spacing={2}>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={10}>
           <Grid container spacing={2}>
             {[...Array(12)].map((_, index) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
@@ -180,7 +184,7 @@ function Home() {
                       backgroundImage: `url(${her.src})`, 
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
-                      opacity: isDark ? "0.5" : "0.8"
+                    
                     }
                   }}
                 >
@@ -195,7 +199,7 @@ function Home() {
                       justifyContent: 'space-around',
                       width: 'calc(100% - 16px)',
                       padding: '4px 8px',
-                      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
                       borderRadius: '9px'
                     }}
                   >
@@ -211,7 +215,8 @@ function Home() {
             ))}
            
             
-          </Grid><Box sx={{
+          </Grid>
+          <Box sx={{
             display:"flex",
             justifyContent:"center",
             marginTop:"1rem"
@@ -220,8 +225,8 @@ function Home() {
           </Box>
           
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+        <Grid item xs={12} md={2}>
+          <Box  sx={{ display: { xs: 'none', md: 'block' },  }}>
             {genres.map((genre, index) => (
            <Button
            key={index}
@@ -262,7 +267,7 @@ function Home() {
       sx={{
         maxWidth: "400px",
         height: "auto",
-        backgroundColor: "#1c1c1e",
+        backgroundColor: isDark ? "#1c1c1e" : "#F1F1F1",
         position: 'absolute',
         marginRight: "auto",
         marginLeft: "auto",
@@ -271,7 +276,7 @@ function Home() {
         left: 0,
         right: 0,
         padding: "20px",
-        backgroundImage: "linear-gradient(to bottom, #1c1c1e, #2c2c2e)"
+        backgroundImage: isDark ? "linear-gradient(to bottom, #1c1c1e, #2c2c2e)" : "linear-gradient(to bottom, #F1F1F1, #E0E0E0)", 
       }}
     >
       <Box sx={{ position: "relative" }}>
@@ -296,6 +301,9 @@ function Home() {
           flexDirection: 'column',
           alignItems: 'center',
           marginBottom: "20px",
+          
+         
+          
         }}
       >
         <Image src={her} width={100} height={100} alt="Movie Poster" />
@@ -304,7 +312,7 @@ function Home() {
       <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)' }} />
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems:"center", margin: "10px 20px" }}>
-        <Typography variant='h6'>Directors:</Typography>
+        <Typography  variant='h6'>Directors:</Typography>
         <Typography variant='body1'>Director Name</Typography>
       </Box>
 

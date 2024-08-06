@@ -131,7 +131,7 @@ function Navbar() {
 
       <Sidebar isSidebar={isSidebar} >
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 1 }}>
-          <Typography variant="h6" component="div" sx={{ textTransform: 'capitalize' }}>Dashboard</Typography>
+          <Typography variant="h3" component="div" sx={{ textTransform: 'capitalize' }}>Dashboard</Typography>
         </Box>
         <List>
           <Box>

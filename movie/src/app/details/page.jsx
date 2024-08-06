@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Typography, Divider, Grid,Tooltip } from '@mui/material';
+import { Box, Typography, Divider, Grid,Tooltip,Button} from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import her from "../../../public/her.jpg";
 import Image from 'next/image';
 import UndoRoundedIcon from '@mui/icons-material/UndoRounded';
+import Link from 'next/link';
 function Details() {
   return (
     <Box
@@ -25,7 +26,7 @@ function Details() {
         <Image src={her} alt="Movie Poster" width={300} height={200} />
       </Box>
       <Box sx={{ flex: "1 1 auto" }}>
-        <Typography variant="h4" sx={{ marginBottom: "10px" }}>Titanic</Typography>
+        <Typography variant="h2" sx={{ marginBottom: "10px" }}>Titanic</Typography>
         <Typography variant="body1" sx={{ marginBottom: "10px" }}>Year: 1997</Typography>
         <Typography variant="body1" sx={{ marginBottom: "10px" }}>Duration: 3h 15m</Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: "10px" }}>
@@ -39,13 +40,18 @@ function Details() {
         <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)', marginBottom: "10px" }} />
         <Typography variant="body1">Topic: A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.</Typography>
       </Box>
+    <Link href="/home">
     
-<UndoRoundedIcon fontSize='medium' color='accent' sx={{
+    <UndoRoundedIcon fontSize='medium' color='accent' sx={{
     position:"absolute",
     right:10,
     top:0,
     cursor:"pointer"
 }}/>
+   
+  
+    </Link>
+
     </Box>
   );
 }
