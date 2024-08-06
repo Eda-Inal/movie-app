@@ -1,8 +1,9 @@
 'use client'
 import React from 'react';
+import { useState } from 'react';
 import Search from '../components/search';
 import { useSelector } from 'react-redux';
-import { Grid, Box, Button, Typography ,Divider} from '@mui/material';
+import { Grid, Box, Button, Typography ,Divider,FormControl,Select,selectedGenre,MenuItem} from '@mui/material';
 import Image from 'next/image';
 import her from "../../../public/her.jpg";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
@@ -19,9 +20,66 @@ function Home() {
     "Action", "Comedy", "Drama", "Fantasy", "Horror",
     "Mystery", "Romance", "Thriller", "Western", "Sci-Fi"
   ];
+  const [selectedGenre, setSelectedGenre] = useState('');
+
+  const handleGenreChange = (event) => {
+    setSelectedGenre(event.target.value);
+  };
   return (
     <>
+    <Box sx={{ display: { xs: 'block', md: 'none', }, width: '80%', marginTop: "12px", mx: "auto" }}>
+      <FormControl fullWidth>
+  <Select
+    value={selectedGenre}
+    onChange={handleGenreChange}
+    displayEmpty
+    sx={{
+    
+      color: isDark ? "white" : "#000",
+      borderColor: 'rgba(128, 128, 128, 0.6)',
+      borderWidth: '2px',
+      borderRadius: '8px',
+      boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+      '&:hover': {
+        backgroundColor: 'rgba(128, 128, 128, 0.2)',
+        borderColor: 'rgba(128, 128, 128, 0.8)',
+      },
+      '& .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'rgba(128, 128, 128, 0.6)',
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: 'rgba(128, 128, 128, 0.8)',
+      },
+      '& .MuiSelect-select': {
+        backgroundColor: isDark ? '#1c1c1e' : '#F1F1E6',
+      },
+      '& .MuiSvgIcon-root': {
+        color: isDark ? "white" : "#000",
+      },
+      '& .MuiPaper-root': {
+        backgroundColor: isDark ? '#1c1c1e' : '#F1F1E6',
+      },
+      '& .MuiMenuItem-root': {
+        backgroundColor: isDark ? '#1c1c1e' : '#F1F1E6',
+        color: isDark ? "white" : "#000",
+        '&:hover': {
+          backgroundColor: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+        }
+      }
+    }}
+  >
+    <MenuItem value="" disabled >
+      Select Genre
+    </MenuItem>
+    {genres.map((genre, index) => (
+      <MenuItem key={index} value={genre} >
+        {genre}
+      </MenuItem>
+    ))}
+  </Select>
+</FormControl>
 
+            </Box>
       <Box 
         sx={{
           width: '80%',
@@ -87,7 +145,7 @@ function Home() {
         </Box>
       </Box>
      
-     
+  
       <Box 
         sx={{
           width: '80%',
@@ -163,7 +221,7 @@ function Home() {
           
         </Grid>
         <Grid item xs={12} md={4}>
-          <Box>
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             {genres.map((genre, index) => (
            <Button
            key={index}
