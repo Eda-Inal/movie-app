@@ -5,6 +5,7 @@ import { Provider, useSelector } from "react-redux";
 import { store } from "./redux/store";
 import Navbar from "./components/Navbar";
 import React, { useEffect, useState } from "react";
+import ScrollToTop from "./components/scroll";
 
 function ThemeWrapper({ children }) {
   const isDark = useSelector((state) => state.movie.isDark);
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
           <ThemeWrapper>
             <Navbar />
             {children}
+            <ScrollToTop />
           </ThemeWrapper>
         </Provider>
       </body>
