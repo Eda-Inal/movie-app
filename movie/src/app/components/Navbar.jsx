@@ -74,7 +74,7 @@ function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "transparent" }}>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Typography variant="h4" component="div" color="secondary" sx={{ flex: 1, textAlign: 'left' }}>
+            <Typography variant="h1" component="div" color="secondary" sx={{ flex: 1, textAlign: 'left' }}>
               Movie
             </Typography>
             <Box sx={{ flex: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'center' }}>

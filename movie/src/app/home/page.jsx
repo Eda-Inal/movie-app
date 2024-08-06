@@ -158,7 +158,7 @@ function Home() {
             justifyContent:"center",
             marginTop:"1rem"
           }}> 
-<Button variant="contained"  color="secondary">Load More</Button>
+<Button variant="contained"  color="secondary" sx={{ textTransform: 'capitalize'}}>Load more</Button>
           </Box>
           
         </Grid>
@@ -183,7 +183,8 @@ function Home() {
              }
            }}
          >
-           {genre}
+         <Typography variant='h5'>{genre}</Typography>
+           
          </Button>
             ))}
           </Box>
