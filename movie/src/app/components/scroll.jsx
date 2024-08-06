@@ -35,6 +35,10 @@ const ScrollToTop = () => {
             right: 16,
             bottom: 16,
             zIndex: 1000,
+            transition: 'transform 0.3s ease',
+            '&:hover': {
+              transform: 'translateY(-10px)' 
+              }
           }}
           onClick={scrollTop}
         />
