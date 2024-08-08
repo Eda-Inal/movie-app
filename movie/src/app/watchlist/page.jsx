@@ -26,7 +26,7 @@ function Watchlist() {
         <Box
           sx={{
             position: 'relative',
-            height: 150,
+            height: 400,
             borderRadius: '16px',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
             overflow: 'hidden',
