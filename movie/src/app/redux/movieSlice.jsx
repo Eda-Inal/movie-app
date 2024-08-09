@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-
 export const fetchTopRatedMovies = createAsyncThunk(
-  'movie/fetchPopularMovies',
-  async () => {
-    const response = await fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=3d6f6952453bf34233cb9f9eb9cd3739');
+  'movie/fetchTopRatedMovies',
+  async (page) => { 
+    const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=3d6f6952453bf34233cb9f9eb9cd3739&page=${page}`);
     const data = await response.json();
-    return data.results; 
+    console.log('API Data:', data);
+    return data; 
   }
 );
 
@@ -14,6 +14,8 @@ export const movieSlice = createSlice({
   name: 'movie',
   initialState: {
     movies: [],
+    currentPage: 1,
+    totalPages: 1,
     isSidebar: false,
     isDark: true,
     isFavourite: false,
@@ -29,6 +31,11 @@ export const movieSlice = createSlice({
     },
     setIsFavourite: (state) => {
       state.isFavourite = !state.isFavourite;
+    },
+    incrementPage: (state) => {
+      if (state.currentPage < state.totalPages) {
+        state.currentPage += 1;
+      }
     }
   },
   extraReducers: (builder) => {
@@ -39,16 +46,15 @@ export const movieSlice = createSlice({
       })
       .addCase(fetchTopRatedMovies.fulfilled, (state, action) => {
         state.loading = false;
-        state.movies = action.payload;  
+        console.log(action.payload);
+        state.movies = [...state.movies, ...action.payload.results || []]; 
+        state.totalPages = action.payload.total_pages || state.totalPages; 
       })
       .addCase(fetchTopRatedMovies.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      },
-    );
+      });
   },
-  
 });
-
-export const { setSidebar, setIsDark } = movieSlice.actions;
+export const { setSidebar, setIsDark, setIsFavourite, incrementPage } = movieSlice.actions;
 export default movieSlice.reducer;
