@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPopularMovies } from '../redux/movieSlice';
+import { fetchTopRatedMovies } from '../redux/movieSlice';
 import { Grid, Box, Typography, Button, FormControl, Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -19,7 +19,7 @@ function Home() {
   const [selectedGenre, setSelectedGenre] = useState('');
 
   useEffect(() => {
-    dispatch(fetchPopularMovies());
+    dispatch(fetchTopRatedMovies());
   }, [dispatch]);
 
   const handleGenreChange = (event) => {
@@ -83,7 +83,7 @@ function Home() {
       <Box 
   sx={{
     width: '80%',
-    height: '60vh',
+    height: '70vh',
     margin: '0 auto',
     position: 'relative',
     display: 'flex',
