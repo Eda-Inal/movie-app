@@ -77,6 +77,7 @@ function Home() {
             borderRadius: '4px',
             display: 'flex',
             flexDirection: 'column',
+            backgroundColor:"rgba(0,0,0,0.6)",
             gap: '8px',
           }}
         >
@@ -87,9 +88,7 @@ function Home() {
             <Typography variant="body1">
               {movies.length > 0 ? movies[0].genre : "Genre"}
             </Typography>
-            <Typography variant="body1">
-              {movies.length > 0 ? `${movies[0].runtime} min` : "Duration"}
-            </Typography>
+           
           </Box>
           <Box sx={{ display: 'flex', gap: '8px', flexDirection: { xs: 'column', sm: 'row' } }}>
             <Button variant="contained" color="secondary" sx={{ textTransform: 'capitalize' }}>
@@ -165,7 +164,7 @@ marginRight:"6px"
       justifyContent:"space-around"
     } }>
 <Typography color="white" variant='h6'>{movie.vote_average.toFixed(1)}</Typography>
-<StarOutlinedIcon sx={{color:"#ffc300"}}  fontSize='25px'/>
+<StarOutlinedIcon sx={{color:"#ffc300"}} color="#ffc300" fontSize='25px'/>
   </Box> 
 </Box>
                 </Box>
