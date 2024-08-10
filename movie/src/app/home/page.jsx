@@ -7,6 +7,7 @@ import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 
 
 function Home() {
@@ -114,7 +115,7 @@ function Home() {
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
               <Box 
                 sx={{
-                  height:400,
+                  height:300,
                   position: 'relative',
                   borderRadius: '16px',
                   overflow: 'hidden',
@@ -132,6 +133,54 @@ function Home() {
                   objectFit="cover"
                   alt={movie.title}
                 />
+                <Box sx={{
+                  position:"absolute",
+                  backgroundColor: "rgba(0, 0, 0, .7)",
+                  color:"whitesmoke",
+                  bottom:0,
+               width:"100%",
+                  height:"20%",
+                  display:"flex",
+                
+                   justifyContent:"space-between",
+                   
+                  
+
+
+
+                }}>
+               
+
+
+             <Box sx={{
+              width:"60%"
+             }}>
+             <Typography color="white">{movie.title}</Typography>
+             </Box>
+<Box sx={{
+display:"flex",
+flexDirection:"column",
+alignContent:"left"
+
+}}>
+  <Typography color="white" variant='h6'>{movie.release_date.slice(0,4)}</Typography>
+  <Box sx={{
+      display:"flex",
+      alignContent:"center",
+      alignItems:"center",
+      justifyContent:"space-around"
+    } }>
+<Typography color="white" variant='h6'>{movie.vote_average.toFixed(1)}</Typography>
+<Box ><StarOutlinedIcon sx={{color:"#ffc300"}} color="#ffc300" fontSize='100px'/></Box>
+  </Box>
+
+
+</Box>
+
+
+                
+
+                </Box>
             <Box 
   sx={{
     position: 'absolute',
