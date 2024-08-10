@@ -1,59 +1,44 @@
-import React from 'react';
-import { Box, Typography, Divider, Grid,Tooltip,Button} from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
-import her from "../../../public/her.jpg";
-import Image from 'next/image';
-import UndoRoundedIcon from '@mui/icons-material/UndoRounded';
-import Link from 'next/link';
-function Details() {
-  return (
-    <Box
-      sx={{
-        margin: "20px auto",
-        position:"relative",
-        padding: "20px",
-        maxWidth: "800px",
-        display: "flex",
-        alignItems: "center",
-        borderRadius: "16px",
-       
-        backdropFilter: "blur(10px)",
-        border:"1px solid gray",
-        boxShadow:"2px 3px"
-      }}
-    >
-      <Box sx={{ flex: "0 0 auto", marginRight: "20px" }}>
-        <Image src={her} alt="Movie Poster" width={300} height={200} />
-      </Box>
-      <Box sx={{ flex: "1 1 auto" }}>
-        <Typography variant="h2" sx={{ marginBottom: "10px" }}>Titanic</Typography>
-        <Typography variant="body1" sx={{ marginBottom: "10px" }}>Year: 1997</Typography>
-        <Typography variant="body1" sx={{ marginBottom: "10px" }}>Duration: 3h 15m</Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: "10px" }}>
-          <Typography variant="body1">IMDb: 8.3</Typography>
-          <StarIcon sx={{ marginLeft: "5px", color: "gold" }} />
-        </Box>
-        <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)', marginBottom: "10px" }} />
-        <Typography variant="body1" sx={{ marginBottom: "10px" }}>Director: James Cameron</Typography>
-        <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)', marginBottom: "10px" }} />
-        <Typography variant="body1" sx={{ marginBottom: "10px" }}>Stars: Leonardo DiCaprio, Kate Winslet</Typography>
-        <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.12)', marginBottom: "10px" }} />
-        <Typography variant="body1">Topic: A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.</Typography>
-      </Box>
-    <Link href="/home">
-    
-    <UndoRoundedIcon fontSize='medium' color='accent' sx={{
-    position:"absolute",
-    right:10,
-    top:0,
-    cursor:"pointer"
-}}/>
-   
-  
-    </Link>
+import React from 'react'
+import { Box, Typography, } from '@mui/material'
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 
+function Detail() {
+  return (
+   <>
+ <Box width="40%"  sx={{
+
+  width:"40%",
+  backgroundColor:"rgba(52, 58, 64, 0.3)",
+   color:"white",
+   display:"flex",
+   flexDirection:"column",
+   justifyContent:"left",
+   paddingLeft:"0.7rem",
+   paddingY:"15px"
+ 
+
+  }}>
+    <Typography variant='h4' sx={{mb:"10px"}}>Header</Typography>
+    <Box width={120} sx={{display:"flex", 
+      justifyContent:"space-between",   alignItems:"center",
+       mb:"10px"
+    }}>
+<StarOutlinedIcon sx={{color:"#ffc300",fontSize:"19px"}} />
+<Typography variant='h6'>8.6</Typography>
+<Typography>Vote</Typography>
     </Box>
-  );
+    <Typography variant='h6'>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, omnis!
+    </Typography>
+    <Typography variant='h6' sx={{my:"10px"}}>Date</Typography>
+    <Typography  variant='h6'>
+      Genre
+    </Typography>
+    <Typography variant='h6' sx={{my:"10px"}}>Language</Typography>
+
+ </Box>
+   </>
+  )
 }
 
-export default Details;
+export default Detail

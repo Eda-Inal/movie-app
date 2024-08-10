@@ -43,6 +43,7 @@ const Best = () => {
                 layout="fill"
                 objectFit="cover"
                 alt={movie.title}
+                objectPosition="top" 
               />
               <Box
                 sx={{

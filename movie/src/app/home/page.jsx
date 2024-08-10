@@ -40,7 +40,7 @@ function Home() {
       <Box 
         sx={{
           width: '90%',
-          height: '70vh',
+          height: '60vh',
           margin: '0 auto',
           position: 'relative',
           display: 'flex',
@@ -64,6 +64,7 @@ function Home() {
             objectFit="cover"
             alt={movies[0].title}
             style={{ filter: 'brightness(60%)' }}
+            objectPosition="top" 
           />
         )}
         <Box
@@ -132,6 +133,7 @@ function Home() {
                layout="fill"
                   objectFit="cover"
                   alt={movie.title}
+                  objectPosition="top" 
                 />
                 <Box sx={{
                   position:"absolute",
@@ -141,45 +143,31 @@ function Home() {
                width:"100%",
                   height:"20%",
                   display:"flex",
-                
                    justifyContent:"space-between",
-                   
-                  
-
-
-
                 }}>
                
-
-
              <Box sx={{
-              width:"60%"
+              width:"60%",
+              marginLeft:"10px"
              }}>
-             <Typography color="white">{movie.title}</Typography>
+             <Typography color="white" >{movie.title}</Typography>
              </Box>
 <Box sx={{
 display:"flex",
 flexDirection:"column",
-alignContent:"left"
-
+alignContent:"left",
+marginRight:"6px"
 }}>
   <Typography color="white" variant='h6'>{movie.release_date.slice(0,4)}</Typography>
   <Box sx={{
       display:"flex",
-      alignContent:"center",
       alignItems:"center",
       justifyContent:"space-around"
     } }>
 <Typography color="white" variant='h6'>{movie.vote_average.toFixed(1)}</Typography>
-<Box ><StarOutlinedIcon sx={{color:"#ffc300"}} color="#ffc300" fontSize='100px'/></Box>
-  </Box>
-
-
+<StarOutlinedIcon sx={{color:"#ffc300"}}  fontSize='25px'/>
+  </Box> 
 </Box>
-
-
-                
-
                 </Box>
             <Box 
   sx={{
