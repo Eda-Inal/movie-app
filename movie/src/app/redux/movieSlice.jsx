@@ -20,7 +20,9 @@ export const movieSlice = createSlice({
     isDark: true,
     isFavourite: false,
     loading: false,
-    error: null
+    error: null,
+    selectedMovie: null, 
+    isDetailOpen: false, 
   },
   reducers: {
     setSidebar: (state, action) => {
@@ -36,6 +38,12 @@ export const movieSlice = createSlice({
       if (state.currentPage < state.totalPages) {
         state.currentPage += 1;
       }
+    },
+    setSelectedMovie: (state, action) => {  
+      state.selectedMovie = action.payload;
+    },
+    toggleDetail: (state, action) => { 
+      state.isDetailOpen = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -56,5 +64,5 @@ export const movieSlice = createSlice({
       });
   },
 });
-export const { setSidebar, setIsDark, setIsFavourite, incrementPage } = movieSlice.actions;
+export const { setSidebar, setIsDark, setIsFavourite, incrementPage,setSelectedMovie, toggleDetail } = movieSlice.actions;
 export default movieSlice.reducer;

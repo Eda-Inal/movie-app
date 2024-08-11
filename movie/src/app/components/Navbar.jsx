@@ -102,11 +102,40 @@ function Navbar() {
       </Typography>
     </Button>
   </Link>
-              <Button onClick={handleChangeIcon}>
-                {
-                  isDark ? <LightModeIcon sx={{ display: { xs: 'none', lg: 'block' } }} color='themeColor' /> : <DarkModeIcon sx={{ display: { xs: 'none', lg: 'block' } }} color='themeColor' />
-                }
-              </Button>
+  <Button
+  onClick={handleChangeIcon}
+  sx={{
+    transition: 'transform 0.2s ease',
+    '&:hover': {
+      transform: 'scale(1.2)',
+    },
+  }}
+>
+  {isDark ? (
+    <LightModeIcon
+      sx={{
+        display: { xs: 'none', lg: 'block' },
+        transition: 'transform 0.2s ease',
+        '&:hover': {
+          transform: 'rotate(180deg)',
+        },
+      }}
+      color='themeColor'
+    />
+  ) : (
+    <DarkModeIcon
+      sx={{
+        display: { xs: 'none', lg: 'block' },
+        transition: 'transform 0.5s ease',
+        '&:hover': {
+          transform: 'rotate(180deg)',
+        },
+      }}
+      color='themeColor'
+    />
+  )}
+</Button>
+
             </Box>
             {
               isSidebar && (

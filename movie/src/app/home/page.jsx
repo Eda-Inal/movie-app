@@ -2,23 +2,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTopRatedMovies , incrementPage} from '../redux/movieSlice';
-import { Grid, Box, Typography, Button, FormControl, Select, MenuItem } from '@mui/material';
+import { Grid, Box, Typography, Button, FormControl, Select, MenuItem,Tooltip } from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
+import InfoIcon from '@mui/icons-material/Info';
+import Detail from '../details/page';
 
 
 function Home() {
   const dispatch = useDispatch();
   const { movies, currentPage, totalPages, isDark } = useSelector((state) => state.movie);
-  console.log(movies)
-  const genres = [
-    "Action", "Comedy", "Drama", "Fantasy", "Horror",
-    "Mystery", "Romance", "Thriller", "Western", "Sci-Fi"
-  ];
-  const [selectedGenre, setSelectedGenre] = useState('');
+  const [selectedMovie, setSelectedMovie] = useState(null); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleInfoClick = (movie) => {
+    setSelectedMovie(movie); // Tıklanan filmi seçiyoruz
+    setIsModalOpen(true); // Modalı açıyoruz
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false); // Modalı kapatıyoruz
+  };
+
 
   useEffect(() => {
     dispatch(fetchTopRatedMovies(currentPage)); 
@@ -168,35 +175,80 @@ marginRight:"6px"
   </Box> 
 </Box>
                 </Box>
-            <Box 
+                <Box 
   sx={{
     position: 'absolute',
-    top:15,
+    top: 15,
     right: 15,
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white', 
-    borderRadius: '50%', 
-    padding: '8px', 
-    transition: 'transform 0.3s ease, background-color 0.3s ease',
-    '&:hover': {
-      transform: 'scale(1.1)', 
-      backgroundColor: '#FF1938',
-    }
+    gap: '10px' 
   }}
 >
-  <FavoriteBorderIcon 
-    fontSize='small'  
-    sx={{ 
-      color: '#FF1938',
-      transition: 'color 0.3s ease',
+  <Box 
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white', 
+      borderRadius: '50%', 
+      padding: '2px', 
+      transition: 'transform 0.3s ease, background-color 0.3s ease',
       '&:hover': {
-        color: 'white',
+        transform: 'scale(1.1)', 
+        backgroundColor: '#FF1938',
       }
-    }} 
-  />
+    }}
+  >
+    <Tooltip title="add to wishlist">
+       <FavoriteBorderIcon 
+      fontSize='small'  
+      sx={{ 
+        color: '#FF1938',
+        transition: 'color 0.3s ease',
+        '&:hover': {
+          color: 'white',
+        }
+      }} 
+    />
+    </Tooltip>
+   
+  </Box>
+  
+  <Box 
+  onClick={() => handleInfoClick(movie)}
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white', 
+      borderRadius: '50%', 
+      padding: '2px', 
+      transition: 'transform 0.3s ease, background-color 0.3s ease',
+      '&:hover': {
+        transform: 'scale(1.1)', 
+        backgroundColor: '#FFC107', 
+      }
+    }}
+  >
+    <Tooltip title="see the detail">
+<InfoIcon 
+      fontSize='small'  
+      sx={{ 
+        color: '#FFC107',
+        transition: 'color 0.3s ease',
+        '&:hover': {
+          color: 'white',
+        }
+      }} 
+    />
+    </Tooltip>
+    
+  </Box>
 </Box>
+
 
               </Box>
             </Grid>
@@ -210,6 +262,13 @@ marginRight:"6px"
           </Box>
         )}
       </Box>
+      {selectedMovie && (
+        <Detail 
+          movie={selectedMovie} 
+          isOpen={isModalOpen} 
+          onClose={handleModalClose} 
+        />
+      )}
     </>
   );
 }
