@@ -119,7 +119,7 @@ function Home() {
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
               <Box 
                 sx={{
-                  height:300,
+                  height:400,
                   position: 'relative',
                   borderRadius: '16px',
                   overflow: 'hidden',

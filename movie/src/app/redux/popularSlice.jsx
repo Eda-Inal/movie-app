@@ -15,7 +15,19 @@ const popularMoviesSlice = createSlice({
   initialState: {
     movies: [],
     loading: false,
-    error: null
+    error: null,
+    selectedPopularMovie: null,
+    isDetailVisible: false,
+  }, reducers:{
+    selectedPopularMovie(state, action) {
+      state.selectedPopularMovie = action.payload;
+    },
+    togglePopularDetail(state, action) {
+      state.isDetailVisible = action.payload;
+    },
+    clearSelectedPopularMovie(state) {
+      state.selectedPopularMovie = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -33,5 +45,5 @@ const popularMoviesSlice = createSlice({
       });
   }
 });
-
+export const { selectedPopularMovie, togglePopularDetail, clearSelectedPopularMovie } = popularMoviesSlice.actions
 export default popularMoviesSlice.reducer;

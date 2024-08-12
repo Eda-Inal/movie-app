@@ -3,13 +3,21 @@ import React from 'react'
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularMovies } from '../redux/popularSlice'
-import { Grid, Box, Typography } from '@mui/material';
+import { Grid, Box, Typography , Tooltip} from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
+import InfoIcon from '@mui/icons-material/Info';
+import Detail from '../details/page';
+import { selectedPopularMovie,togglePopularDetail } from '../redux/popularSlice';
 
 const Best = () => {
   const dispatch = useDispatch();
-  const { movies, loading, error } = useSelector((state) => state.popularMovies);
+  const { movies, loading, error, isDetailVisible } = useSelector((state) => state.popularMovies);
+  const handleInfoClick = (movie) => {
+    dispatch(selectedPopularMovie(movie));
+    dispatch(togglePopularDetail(true));
+  };
 
   useEffect(() => {
     dispatch(fetchPopularMovies());
@@ -64,13 +72,88 @@ const Best = () => {
                   {movie.title}
                 </Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  <FavoriteBorderIcon fontSize="small" />
+                <StarOutlinedIcon sx={{color:"#ffc300"}} color="#ffc300" fontSize='25px'/>
                   <Typography variant="body2" sx={{ fontSize: '0.875rem' }}>
                     {movie.vote_average.toFixed(1)}
                   </Typography>
                 </Box>
               </Box>
+              <Box 
+  sx={{
+    position: 'absolute',
+    top: 15,
+    right: 15,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: '10px' 
+  }}
+>
+  <Box 
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white', 
+      borderRadius: '50%', 
+      padding: '2px', 
+      transition: 'transform 0.3s ease, background-color 0.3s ease',
+      '&:hover': {
+        transform: 'scale(1.1)', 
+        backgroundColor: '#FF1938',
+      }
+    }}
+  >
+    <Tooltip title="add to wishlist">
+       <FavoriteBorderIcon 
+      fontSize='small'  
+      sx={{ 
+        color: '#FF1938',
+        transition: 'color 0.3s ease',
+        '&:hover': {
+          color: 'white',
+        }
+      }} 
+    />
+    </Tooltip>
+   
+  </Box>
+  
+  <Box 
+
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'white', 
+      borderRadius: '50%', 
+      padding: '2px', 
+      transition: 'transform 0.3s ease, background-color 0.3s ease',
+      '&:hover': {
+        transform: 'scale(1.1)', 
+        backgroundColor: '#FFC107', 
+      }
+    }}
+  >
+    <Tooltip title="see the detail">
+<InfoIcon 
+ onClick={() => handleInfoClick(movie)}
+      fontSize='small'  
+      sx={{ 
+        color: '#FFC107',
+        transition: 'color 0.3s ease',
+        '&:hover': {
+          color: 'white',
+        }
+      }} 
+    />
+    </Tooltip>
+    
+  </Box>
+</Box>
             </Box>
+            {isDetailVisible && <Detail />}
           </Grid>
         ))}
       </Grid>
