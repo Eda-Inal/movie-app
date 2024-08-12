@@ -1,11 +1,20 @@
+'use client'
 import React from 'react'
+import { useSelector,useDispatch } from 'react-redux';
 import { Box, Typography, } from '@mui/material'
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import { toggleDetail } from '../redux/movieSlice';
 
 
-function Detail({ movie, isOpen, onClose }) {
-  if (!isOpen) return null; 
+function Detail() {
+  const dispatch = useDispatch();
+  const selectedMovie = useSelector((state) => state.movie.selectedMovie);
+  const handleClose = () => {
+    dispatch(toggleDetail(false)); 
+  };
+
+  if (!selectedMovie) return null; 
   return (
    <>
    <Box 
@@ -20,7 +29,7 @@ function Detail({ movie, isOpen, onClose }) {
           height: '100vh', 
           backgroundColor: 'rgba(0, 0, 0, 0.7)', 
           zIndex: 1000, 
-          opacity: isOpen ? 1 : 0,
+          
           transition: 'opacity 0.3s ease-in-out'
         }}
   
@@ -37,30 +46,29 @@ function Detail({ movie, isOpen, onClose }) {
    justifyContent:"left",
    paddingLeft:"0.7rem",
    paddingY:"15px",
-    transform: isOpen ? 'scale(1)' : 'scale(0.9)',
-    transition: 'transform 0.3s ease-in-out'
+
 
  
 
   }}>
-    <Typography variant='h4' sx={{mb:"10px"}}> {movie.title}</Typography>
+    <Typography variant='h4' sx={{mb:"10px"}}>{selectedMovie.title}</Typography>
     <Box width={200} sx={{display:"flex", 
       justifyContent:"space-between",   alignItems:"center",
        mb:"10px"
     }}>
 <StarOutlinedIcon sx={{color:"#ffc300",fontSize:"19px"}} />
-<Typography variant='h6'>{movie.vote_average.toFixed(1)}</Typography>
-<Typography>Vote count:{movie.vote_count}</Typography>
+<Typography variant='h6'>{selectedMovie.vote_average.toFixed(1)}</Typography>
+<Typography>Vote count: {selectedMovie.vote_count}</Typography>
     </Box>
     <Typography variant='h6'>
-    {movie.overview}
+    {selectedMovie.overview}
     </Typography>
-    <Typography variant='h6' sx={{my:"10px"}}>{movie.release_date.slice(0,4)}</Typography>
+    <Typography variant='h6' sx={{my:"10px"}}>{selectedMovie.release_date}</Typography>
     <Typography  variant='h6'>
       Genre
     </Typography>
-    <Typography variant='h6' sx={{my:"10px"}}> {movie.original_language.toUpperCase()}</Typography>
-    <CloseIcon   onClick={onClose}  color="accent" sx={{
+    <Typography variant='h6' sx={{my:"10px"}}> {selectedMovie.original_language.toUpperCase()}</Typography>
+    <CloseIcon onClick={handleClose}   color="accent" sx={{
       fontSize:"1.6rem",
   cursor:"pointer",
   position:"absolute",

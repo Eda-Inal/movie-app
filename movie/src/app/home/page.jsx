@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTopRatedMovies , incrementPage} from '../redux/movieSlice';
+import { fetchTopRatedMovies , incrementPage, setSelectedMovie,toggleDetail} from '../redux/movieSlice';
 import { Grid, Box, Typography, Button, FormControl, Select, MenuItem,Tooltip } from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -14,17 +14,9 @@ import Detail from '../details/page';
 
 function Home() {
   const dispatch = useDispatch();
-  const { movies, currentPage, totalPages, isDark } = useSelector((state) => state.movie);
-  const [selectedMovie, setSelectedMovie] = useState(null); 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleInfoClick = (movie) => {
-    setSelectedMovie(movie); // Tıklanan filmi seçiyoruz
-    setIsModalOpen(true); // Modalı açıyoruz
-  };
+  const { movies, currentPage, totalPages, isDark,isDetailOpen } = useSelector((state) => state.movie);
 
-  const handleModalClose = () => {
-    setIsModalOpen(false); // Modalı kapatıyoruz
-  };
+  
 
 
   useEffect(() => {
@@ -38,6 +30,11 @@ function Home() {
   const handleLoadMore = () => {
     dispatch(incrementPage());
     dispatch(fetchTopRatedMovies(currentPage + 1)); 
+  };
+  const handleMovieSelect = (movie) => {
+    dispatch(setSelectedMovie(movie)); 
+    dispatch(toggleDetail(true)); 
+
   };
 
   return (
@@ -218,7 +215,7 @@ marginRight:"6px"
   </Box>
   
   <Box 
-  onClick={() => handleInfoClick(movie)}
+
     sx={{
       display: 'flex',
       justifyContent: 'center',
@@ -235,6 +232,7 @@ marginRight:"6px"
   >
     <Tooltip title="see the detail">
 <InfoIcon 
+onClick={() => handleMovieSelect(movie)} 
       fontSize='small'  
       sx={{ 
         color: '#FFC107',
@@ -262,13 +260,8 @@ marginRight:"6px"
           </Box>
         )}
       </Box>
-      {selectedMovie && (
-        <Detail 
-          movie={selectedMovie} 
-          isOpen={isModalOpen} 
-          onClose={handleModalClose} 
-        />
-      )}
+      {isDetailOpen && <Detail />}
+      
     </>
   );
 }
