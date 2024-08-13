@@ -23,6 +23,7 @@ export const movieSlice = createSlice({
     error: null,
     selectedMovie: null, 
     isDetailOpen: false, 
+    favouriteMoviesTopRated: []
   },
   reducers: {
     setSidebar: (state, action) => {
@@ -44,6 +45,15 @@ export const movieSlice = createSlice({
     },
     toggleDetail: (state, action) => { 
       state.isDetailOpen = action.payload;
+    },
+    addFavoruiteMovie: (state,action) => {
+const movieExists = state.favouriteMoviesTopRated.find((movie) =>movie.id === action.payload.id);
+if(!movieExists){
+  state.favouriteMoviesTopRated.push(action.payload);
+}
+    },
+    removeFavoruiteMovie : (state,action) => {
+      state.favouriteMoviesTopRated = state.favouriteMoviesTopRated.filter((movie) => movie.id !== action.payload.id)
     }
   },
   extraReducers: (builder) => {
@@ -64,5 +74,5 @@ export const movieSlice = createSlice({
       });
   },
 });
-export const { setSidebar, setIsDark, setIsFavourite, incrementPage,setSelectedMovie, toggleDetail } = movieSlice.actions;
+export const { setSidebar, setIsDark, setIsFavourite, incrementPage,setSelectedMovie, toggleDetail,addFavoruiteMovie,removeFavoruiteMovie } = movieSlice.actions;
 export default movieSlice.reducer;

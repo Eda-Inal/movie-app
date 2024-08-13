@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTopRatedMovies , incrementPage, setSelectedMovie,toggleDetail} from '../redux/movieSlice';
+import { fetchTopRatedMovies , incrementPage, setSelectedMovie,toggleDetail,addFavoruiteMovie,removeFavoruiteMovie} from '../redux/movieSlice';
 import { Grid, Box, Typography, Button, FormControl, Select, MenuItem,Tooltip } from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -35,6 +35,9 @@ function Home() {
     dispatch(setSelectedMovie(movie)); 
     dispatch(toggleDetail(true)); 
 
+  };
+  const handleFavouriteMovie = (movie) => {
+    dispatch(addFavoruiteMovie(movie)); 
   };
 
   return (
@@ -167,8 +170,8 @@ marginRight:"6px"
       alignItems:"center",
       justifyContent:"space-around"
     } }>
+      <StarOutlinedIcon sx={{color:"#ffc300"}} color="#ffc300" fontSize='25px'/>
 <Typography color="white" variant='h6'>{movie.vote_average.toFixed(1)}</Typography>
-<StarOutlinedIcon sx={{color:"#ffc300"}} color="#ffc300" fontSize='25px'/>
   </Box> 
 </Box>
                 </Box>
@@ -201,6 +204,7 @@ marginRight:"6px"
   >
     <Tooltip title="add to wishlist">
        <FavoriteBorderIcon 
+       onClick={() => handleFavouriteMovie(movie)}
       fontSize='small'  
       sx={{ 
         color: '#FF1938',
