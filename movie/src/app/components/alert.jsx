@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import { useSelector } from 'react-redux';
 
 function Alert() {
   const [visible, setVisible] = useState(false);
@@ -10,10 +11,11 @@ function Alert() {
     setVisible(true); 
     const timer = setTimeout(() => {
       setVisible(false); 
-    }, 500);
+    },500 );
 
     return () => clearTimeout(timer); 
   }, []);
+  const { alertMessage,alertColor } = useSelector((state) => state.movie);
 
   return (
     visible && (
@@ -22,7 +24,7 @@ function Alert() {
           position: "fixed",
           top: "5rem",
           right: "1rem",
-          backgroundColor: "secondary.main",
+          backgroundColor: alertColor,
           color: "white",
           paddingX: { xs: "0.2rem", sm: "0.5rem" },
           paddingY: { xs: "0.5rem", sm: "0.8rem" },
@@ -39,7 +41,7 @@ function Alert() {
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: 500 }}>
-          Movie added to Watchlist!
+       {alertMessage}
         </Typography>
         <CheckCircleIcon sx={{ color: "white", marginLeft: "0.3rem", fontSize: "28px" }} />
       </Box>

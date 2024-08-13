@@ -29,11 +29,16 @@ const Best = () => {
  const handleFavouriteMovie = (movie) => {
     dispatch(addFavoruiteMovie(movie)); 
 
-    dispatch(setShowAlert());
+    dispatch(setShowAlert(
+      {
+        message: 'Movie added to Watchlist!',
+      color: 'secondary.main'
+      }
+    ));
   
     setTimeout(() => {
     dispatch(setHideAlert());
-    }, 500)
+    }, 700)
   };
   if (loading) return <Typography variant="h6">Loading...</Typography>;
   if (error) return <Typography variant="h6">Error: {error}</Typography>;

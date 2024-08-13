@@ -27,9 +27,51 @@ function Watchlist() {
 
   return (
     <>
-      <Box sx={{ width: '90%', margin: '1.2rem auto' }}>
-        <Typography variant="h3">My List</Typography>
+   
+   <Box sx={{ width: '90%', margin: '1.2rem auto' }}>
+  <Typography variant="h3" sx={{ fontWeight: 300 }}>My List</Typography>
+  {!allFavouriteMovies.length && (
+    <Box 
+      sx={{
+        maxWidth:"400px",
+        mt: "20px",
+        padding: "1rem",
+        borderRadius: "8px",
+        backgroundColor: "error.main",
+        color: "white",
+        display: "flex",
+        alignItems: "center",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+        animation: "fadeIn 1s ease-in",
+      }}
+    >
+      <Typography variant='h5' sx={{ fontWeight: 600, flexGrow: 1 }}>
+        You have no favorite movies yet
+      </Typography>
+      <Box 
+        component="span" 
+        sx={{ 
+          display: "inline-block",
+          width: "24px",
+          height: "24px",
+          backgroundColor: "white",
+          borderRadius: "50%",
+          color: "#f44336",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "16px",
+          marginLeft: "10px",
+        }}
+      >
+        !
       </Box>
+    </Box>
+  )}
+</Box>
+
+
+     
       <Grid container spacing={2} sx={{ width: '90%', margin: '1.5rem auto' }}>
         {allFavouriteMovies.map((movie, index) => (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>

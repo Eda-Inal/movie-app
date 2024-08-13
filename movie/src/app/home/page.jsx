@@ -40,11 +40,16 @@ function Home() {
   };
   const handleFavouriteMovie = (movie) => {
     dispatch(addFavoruiteMovie(movie)); 
-    dispatch(setShowAlert());
+    dispatch(setShowAlert(
+      {
+        message: 'Movie added to Watchlist!',
+      color: 'secondary.main'
+      }
+    ));
   
     setTimeout(() => {
     dispatch(setHideAlert());
-    }, 500);
+    }, 700);
   };
  
 

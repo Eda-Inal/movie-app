@@ -25,15 +25,19 @@ export const movieSlice = createSlice({
     isDetailOpen: false, 
     favouriteMoviesTopRated: [],
     showAlert: false,
+    alertMessage: '',
+      alertColor: 'secondary.main'
 
   },
   reducers: {
-setShowAlert :(state) => {
+setShowAlert :(state,action) => {
   state.showAlert = true
- 
+  state.alertMessage = action.payload.message;
+  state.alertColor = action.payload.color;
 },
-setHideAlert : (state) => {
+setHideAlert : (state,action) => {
   state.showAlert = false
+  
 },
     setSidebar: (state, action) => {
       state.isSidebar = action.payload;
