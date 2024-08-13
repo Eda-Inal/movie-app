@@ -9,7 +9,8 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import InfoIcon from '@mui/icons-material/Info';
 import Detail from '../details/page';
-import { selectedPopularMovie,togglePopularDetail } from '../redux/popularSlice';
+import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie } from '../redux/popularSlice';
+import { removeFavoruiteMovie } from '../redux/movieSlice';
 
 const Best = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,11 @@ const Best = () => {
   useEffect(() => {
     dispatch(fetchPopularMovies());
   }, [dispatch]);
-
+      
+ const handleFavouriteMovie = (movie) => {
+    dispatch(addFavoruiteMovie(movie)); 
+    dispatch(removeFavoruiteMovie(movie))
+  };
   if (loading) return <Typography variant="h6">Loading...</Typography>;
   if (error) return <Typography variant="h6">Error: {error}</Typography>;
 
