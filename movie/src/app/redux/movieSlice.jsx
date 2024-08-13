@@ -23,9 +23,18 @@ export const movieSlice = createSlice({
     error: null,
     selectedMovie: null, 
     isDetailOpen: false, 
-    favouriteMoviesTopRated: []
+    favouriteMoviesTopRated: [],
+    showAlert: false,
+
   },
   reducers: {
+setShowAlert :(state) => {
+  state.showAlert = true
+ 
+},
+setHideAlert : (state) => {
+  state.showAlert = false
+},
     setSidebar: (state, action) => {
       state.isSidebar = action.payload;
     },
@@ -74,5 +83,5 @@ if(!movieExists){
       });
   },
 });
-export const { setSidebar, setIsDark, setIsFavourite, incrementPage,setSelectedMovie, toggleDetail,addFavoruiteMovie,removeFavoruiteMovie } = movieSlice.actions;
+export const { setSidebar, setIsDark, setIsFavourite, incrementPage,setSelectedMovie, toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert } = movieSlice.actions;
 export default movieSlice.reducer;

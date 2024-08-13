@@ -1,7 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react';
+import Alert from '../components/alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTopRatedMovies , incrementPage, setSelectedMovie,toggleDetail,addFavoruiteMovie,removeFavoruiteMovie} from '../redux/movieSlice';
+import { fetchTopRatedMovies , incrementPage, setSelectedMovie,toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert} from '../redux/movieSlice';
 import { Grid, Box, Typography, Button, FormControl, Select, MenuItem,Tooltip } from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -14,7 +15,7 @@ import Detail from '../details/page';
 
 function Home() {
   const dispatch = useDispatch();
-  const { movies, currentPage, totalPages, isDark,isDetailOpen } = useSelector((state) => state.movie);
+  const { movies, currentPage, totalPages, isDark,isDetailOpen,showAlert} = useSelector((state) => state.movie);
 
   
 
@@ -34,11 +35,18 @@ function Home() {
   const handleMovieSelect = (movie) => {
     dispatch(setSelectedMovie(movie)); 
     dispatch(toggleDetail(true)); 
+   
 
   };
   const handleFavouriteMovie = (movie) => {
     dispatch(addFavoruiteMovie(movie)); 
+    dispatch(setShowAlert());
+  
+    setTimeout(() => {
+    dispatch(setHideAlert());
+    }, 500);
   };
+ 
 
   return (
     <>
@@ -265,6 +273,7 @@ onClick={() => handleMovieSelect(movie)}
         )}
       </Box>
       {isDetailOpen && <Detail />}
+      {showAlert && <Alert />}
       
     </>
   );

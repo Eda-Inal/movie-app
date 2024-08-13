@@ -1,12 +1,12 @@
 'use client'
-import Detail from "./details/page";
+import Alert from "./components/alert";
 import "./global.css"
 
 export default function Home() {
 
   return (
     <>
-  <Detail/>
+  <Alert/>
    </>
   );
 }

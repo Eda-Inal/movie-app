@@ -1,6 +1,7 @@
 'use client'
 import React from 'react'
 import { useState,useEffect } from 'react';
+import Alert from '../components/alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularMovies } from '../redux/popularSlice'
 import { Grid, Box, Typography , Tooltip} from '@mui/material';
@@ -10,11 +11,12 @@ import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import InfoIcon from '@mui/icons-material/Info';
 import Detail from '../details/page';
 import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie } from '../redux/popularSlice';
-import { removeFavoruiteMovie } from '../redux/movieSlice';
+import { removeFavoruiteMovie,setHideAlert,setShowAlert } from '../redux/movieSlice';
 
 const Best = () => {
   const dispatch = useDispatch();
   const { movies, loading, error, isDetailVisible } = useSelector((state) => state.popularMovies);
+  const {showAlert} =  useSelector((state) => state.movie)
   const handleInfoClick = (movie) => {
     dispatch(selectedPopularMovie(movie));
     dispatch(togglePopularDetail(true));
@@ -26,7 +28,12 @@ const Best = () => {
       
  const handleFavouriteMovie = (movie) => {
     dispatch(addFavoruiteMovie(movie)); 
-    dispatch(removeFavoruiteMovie(movie))
+
+    dispatch(setShowAlert());
+  
+    setTimeout(() => {
+    dispatch(setHideAlert());
+    }, 500)
   };
   if (loading) return <Typography variant="h6">Loading...</Typography>;
   if (error) return <Typography variant="h6">Error: {error}</Typography>;
@@ -112,6 +119,7 @@ const Best = () => {
   >
     <Tooltip title="add to wishlist">
        <FavoriteBorderIcon 
+       onClick = {()=> handleFavouriteMovie(movie)}
       fontSize='small'  
       sx={{ 
         color: '#FF1938',
@@ -162,7 +170,9 @@ const Best = () => {
           </Grid>
         ))}
       </Grid>
+      {showAlert && <Alert />}
     </Grid>
+    
   );
 };
 
