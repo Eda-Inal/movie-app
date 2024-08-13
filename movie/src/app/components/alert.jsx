@@ -22,7 +22,7 @@ function Alert() {
       <Box
         sx={{
           position: "fixed",
-          top: "5rem",
+          top: "1rem",
           right: "1rem",
           backgroundColor: alertColor,
           color: "white",
@@ -31,7 +31,7 @@ function Alert() {
           borderRadius: "8px",
           boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
           width: { xs: "80%", sm: "60%", md: "30%" },
-          maxWidth: "300px",
+          maxWidth: "350px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
