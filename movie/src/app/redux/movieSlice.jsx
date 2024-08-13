@@ -25,11 +25,13 @@ export const movieSlice = createSlice({
     isDetailOpen: false, 
     favouriteMoviesTopRated: [],
     showAlert: false,
+    favoriteMovieIds: [],
     alertMessage: '',
       alertColor: 'secondary.main'
 
   },
   reducers: {
+  
 setShowAlert :(state,action) => {
   state.showAlert = true
   state.alertMessage = action.payload.message;
@@ -63,10 +65,14 @@ setHideAlert : (state,action) => {
 const movieExists = state.favouriteMoviesTopRated.find((movie) =>movie.id === action.payload.id);
 if(!movieExists){
   state.favouriteMoviesTopRated.push(action.payload);
+  state.favoriteMovieIds.push(action.payload.id);
 }
     },
     removeFavoruiteMovie : (state,action) => {
-      state.favouriteMoviesTopRated = state.favouriteMoviesTopRated.filter((movie) => movie.id !== action.payload.id)
+      state.favouriteMoviesTopRated = state.favouriteMoviesTopRated.filter((movie) => movie.id !== action.payload.id);
+      state.favoriteMovieIds = state.favoriteMovieIds.filter(
+        (id) => id !== action.payload.id
+      );
     }
   },
   extraReducers: (builder) => {
@@ -87,5 +93,5 @@ if(!movieExists){
       });
   },
 });
-export const { setSidebar, setIsDark, setIsFavourite, incrementPage,setSelectedMovie, toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert } = movieSlice.actions;
+export const { setSidebar, setIsDark, incrementPage,setSelectedMovie, toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert } = movieSlice.actions;
 export default movieSlice.reducer;

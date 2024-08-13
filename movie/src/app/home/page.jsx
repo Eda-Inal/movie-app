@@ -15,7 +15,7 @@ import Detail from '../details/page';
 
 function Home() {
   const dispatch = useDispatch();
-  const { movies, currentPage, totalPages, isDark,isDetailOpen,showAlert} = useSelector((state) => state.movie);
+  const { movies, currentPage, totalPages, isDark,isDetailOpen,showAlert, favoriteMovieIds} = useSelector((state) => state.movie);
 
   
 
@@ -39,18 +39,25 @@ function Home() {
 
   };
   const handleFavouriteMovie = (movie) => {
-    dispatch(addFavoruiteMovie(movie)); 
-    dispatch(setShowAlert(
-      {
+    if (favoriteMovieIds.includes(movie.id)) {
+      dispatch(removeFavoruiteMovie(movie));
+      dispatch(setShowAlert({
+        message: 'Movie removed from Watchlist!',
+        color: 'error.main',
+      }));
+    } else {
+      dispatch(addFavoruiteMovie(movie));
+      dispatch(setShowAlert({
         message: 'Movie added to Watchlist!',
-      color: 'secondary.main'
-      }
-    ));
+        color: 'secondary.main',
+      }));
+    }
   
     setTimeout(() => {
-    dispatch(setHideAlert());
-    }, 700);
+      dispatch(setHideAlert());
+    }, 3000);
   };
+  
  
 
   return (
@@ -200,36 +207,33 @@ marginRight:"6px"
     gap: '10px' 
   }}
 >
-  <Box 
-    sx={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'white', 
-      borderRadius: '50%', 
-      padding: '2px', 
-      transition: 'transform 0.3s ease, background-color 0.3s ease',
-      '&:hover': {
-        transform: 'scale(1.1)', 
-        backgroundColor: '#FF1938',
-      }
-    }}
-  >
-    <Tooltip title="add to wishlist">
-       <FavoriteBorderIcon 
-       onClick={() => handleFavouriteMovie(movie)}
-      fontSize='small'  
-      sx={{ 
-        color: '#FF1938',
-        transition: 'color 0.3s ease',
-        '&:hover': {
-          color: 'white',
-        }
-      }} 
+<Box
+  sx={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: favoriteMovieIds.includes(movie.id) ? '#FF1938' : 'white', 
+    color: favoriteMovieIds.includes(movie.id) ? 'white' : '#FF1938',
+    border: '2px solid #FF1938',
+    borderRadius: '50%',
+    padding: '2px',
+    transition: 'transform 0.3s ease, background-color 0.3s ease',
+    '&:hover': {
+      transform: 'scale(1.1)',
+    },
+  }}
+>
+  <Tooltip title={favoriteMovieIds.includes(movie.id) ? "remove from wishlist" : "add to wishlist"}>
+    <FavoriteBorderIcon
+      onClick={() => handleFavouriteMovie(movie)}
+      fontSize='small'
+      sx={{
+        color: 'inherit',
+      }}
     />
-    </Tooltip>
-   
-  </Box>
+  </Tooltip>
+</Box>
+
   
   <Box 
 
