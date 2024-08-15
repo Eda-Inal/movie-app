@@ -62,6 +62,30 @@ function Home() {
 
   return (
     <>
+  <Box 
+  sx={{ 
+    width:"90%",
+    textAlign: 'left',
+    margin:"0 auto " ,
+    fontWeight: '600', 
+    marginTop: '15px', 
+    marginBottom: '25px',
+
+  }}
+>
+  <Box sx={{
+    display:"flex",
+    alignItems:"center",
+    
+  }}
+  
+  ><Typography color="secondary.main" variant='h2' marginRight={1}>Top Rated Films:</Typography>
+  <Typography variant='h4'>A Curated Collection</Typography>
+  </Box>
+
+</Box>
+
+  
    
 
       <Box 
@@ -84,6 +108,7 @@ function Home() {
           },
         }}
       >
+        
         {movies.length > 0 && (
           <Image
             src={`https://image.tmdb.org/t/p/original${movies[0].backdrop_path}`} 
@@ -207,7 +232,7 @@ marginRight:"6px"
     gap: '10px' 
   }}
 >
-<Box
+ <Box
   sx={{
     display: 'flex',
     justifyContent: 'center',

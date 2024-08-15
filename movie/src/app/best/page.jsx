@@ -44,6 +44,29 @@ const Best = () => {
   if (error) return <Typography variant="h6">Error: {error}</Typography>;
 
   return (
+    <>
+      <Box 
+  sx={{ 
+    width:"90%",
+    textAlign: 'left',
+    margin:"0 auto " ,
+    fontWeight: '600', 
+    marginTop: '15px', 
+   
+
+  }}
+>
+  <Box sx={{
+    display:"flex",
+    alignItems:"center",
+    
+  }}
+  
+  ><Typography color="secondary.main" variant='h2' marginRight={1}> Discover </Typography>
+  <Typography variant='h4'>the Latest Blockbusters</Typography>
+  </Box>
+
+</Box>
     <Grid style={{ width: '90%', margin: '0 auto', padding: '20px' }}>
       <Grid container spacing={2}>
         {movies.map((movie) => (
@@ -177,6 +200,8 @@ const Best = () => {
       </Grid>
       {showAlert && <Alert />}
     </Grid>
+    </>
+    
     
   );
 };

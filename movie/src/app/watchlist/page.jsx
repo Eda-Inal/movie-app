@@ -28,12 +28,38 @@ function Watchlist() {
   return (
     <>
    
-   <Box sx={{ width: '90%', margin: '1.2rem auto' }}>
-  <Typography variant="h3" sx={{ fontWeight: 300 }}>My List</Typography>
-  {!allFavouriteMovies.length && (
+   <Box sx={{ width: '90%'}}>
+   <Box 
+  sx={{ 
+    width:"90%",
+    textAlign: 'left',
+    margin:"0 auto " ,
+    fontWeight: '600', 
+    marginTop: '15px', 
+    marginBottom: '25px',
+
+  }}
+>
+  <Box sx={{
+    display:"flex",
+    alignItems:"center",
+    
+  }}
+  
+  ><Typography color="secondary.main" variant='h2' marginRight={1}> Your Personal Watchlist:</Typography>
+  <Typography variant='h4'>Movies You Love</Typography>
+  </Box>
+
+</Box>
+  
+  
+</Box>
+<Box  sx={{width:"90%",  margin:"0 auto"}}>
+{!allFavouriteMovies.length && (
     <Box 
       sx={{
         maxWidth:"400px",
+        
         mt: "20px",
         padding: "1rem",
         borderRadius: "8px",
