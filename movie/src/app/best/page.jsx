@@ -10,12 +10,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import InfoIcon from '@mui/icons-material/Info';
 import Detail from '../details/page';
-import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie } from '../redux/popularSlice';
+import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie,removePopularFavoruiteMovie  } from '../redux/popularSlice';
 import { removeFavoruiteMovie,setHideAlert,setShowAlert } from '../redux/movieSlice';
 
 const Best = () => {
   const dispatch = useDispatch();
-  const { movies, loading, error, isDetailVisible } = useSelector((state) => state.popularMovies);
+  const { movies, loading, error, isDetailVisible, favoritePopularMovieIds } = useSelector((state) => state.popularMovies);
   const {showAlert} =  useSelector((state) => state.movie)
   const handleInfoClick = (movie) => {
     dispatch(selectedPopularMovie(movie));
@@ -26,19 +26,24 @@ const Best = () => {
     dispatch(fetchPopularMovies());
   }, [dispatch]);
       
- const handleFavouriteMovie = (movie) => {
-    dispatch(addFavoruiteMovie(movie)); 
-
-    dispatch(setShowAlert(
-      {
+  const handleFavouriteMovie = (movie) => {
+    if (favoritePopularMovieIds.includes(movie.id)) {
+      dispatch(removePopularFavoruiteMovie (movie));
+      dispatch(setShowAlert({
+        message: 'Movie removed from Watchlist!',
+        color: 'error.main',
+      }));
+    } else {
+      dispatch(addFavoruiteMovie(movie));
+      dispatch(setShowAlert({
         message: 'Movie added to Watchlist!',
-      color: 'secondary.main'
-      }
-    ));
+        color: 'success.main',
+      }));
+    }
   
     setTimeout(() => {
-    dispatch(setHideAlert());
-    }, 700)
+      dispatch(setHideAlert());
+    }, 1000);
   };
   if (loading) return <Typography variant="h6">Loading...</Typography>;
   if (error) return <Typography variant="h6">Error: {error}</Typography>;
@@ -135,26 +140,26 @@ const Best = () => {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: 'white', 
+      border: '2px solid #FF1938',
+      backgroundColor: favoritePopularMovieIds.includes(movie.id) ? '#FF1938' : 'white', 
+      color: favoritePopularMovieIds.includes(movie.id) ? 'white' : '#FF1938',
       borderRadius: '50%', 
       padding: '2px', 
       transition: 'transform 0.3s ease, background-color 0.3s ease',
       '&:hover': {
-        transform: 'scale(1.1)', 
-        backgroundColor: '#FF1938',
+        transform: 'scale(1.3)', 
+ 
       }
     }}
   >
-    <Tooltip title="add to wishlist">
+    <Tooltip title={favoritePopularMovieIds.includes(movie.id) ? "remove from wishlist" : "add to wishlist"}>
        <FavoriteBorderIcon 
        onClick = {()=> handleFavouriteMovie(movie)}
       fontSize='small'  
       sx={{ 
-        color: '#FF1938',
-        transition: 'color 0.3s ease',
-        '&:hover': {
-          color: 'white',
-        }
+        color: 'inherit',
+       
+        
       }} 
     />
     </Tooltip>
@@ -170,9 +175,10 @@ const Best = () => {
       backgroundColor: 'white', 
       borderRadius: '50%', 
       padding: '2px', 
+      border: '2px solid #FFC107',
       transition: 'transform 0.3s ease, background-color 0.3s ease',
       '&:hover': {
-        transform: 'scale(1.1)', 
+        transform: 'scale(1.3)', 
         backgroundColor: '#FFC107', 
       }
     }}

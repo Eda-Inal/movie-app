@@ -49,13 +49,13 @@ function Home() {
       dispatch(addFavoruiteMovie(movie));
       dispatch(setShowAlert({
         message: 'Movie added to Watchlist!',
-        color: 'secondary.main',
+        color: 'success.main',
       }));
     }
   
     setTimeout(() => {
       dispatch(setHideAlert());
-    }, 3000);
+    }, 1000);
   };
   
  
@@ -244,7 +244,7 @@ marginRight:"6px"
     padding: '2px',
     transition: 'transform 0.3s ease, background-color 0.3s ease',
     '&:hover': {
-      transform: 'scale(1.1)',
+      transform: 'scale(1.3)',
     },
   }}
 >
@@ -269,9 +269,10 @@ marginRight:"6px"
       backgroundColor: 'white', 
       borderRadius: '50%', 
       padding: '2px', 
+      border: '2px solid #FFC107',
       transition: 'transform 0.3s ease, background-color 0.3s ease',
       '&:hover': {
-        transform: 'scale(1.1)', 
+        transform: 'scale(1.3)', 
         backgroundColor: '#FFC107', 
       }
     }}

@@ -18,7 +18,8 @@ const popularMoviesSlice = createSlice({
     error: null,
     selectedPopularMovie: null,
     isDetailVisible: false,
-    favouriteMoviesPopular: []
+    favouriteMoviesPopular: [],
+    favoritePopularMovieIds: [],
   }, reducers:{
     selectedPopularMovie(state, action) {
       state.selectedPopularMovie = action.payload;
@@ -33,10 +34,14 @@ const popularMoviesSlice = createSlice({
       const movieExists = state.favouriteMoviesPopular.find((movie) =>movie.id === action.payload.id);
       if(!movieExists){
         state.favouriteMoviesPopular.push(action.payload);
+        state.favoritePopularMovieIds.push(action.payload.id);
       }
           },
           removePopularFavoruiteMovie : (state,action) => {
-            state.favouriteMoviesPopular = state.favouriteMoviesPopular.filter((movie) => movie.id !== action.payload.id)
+            state.favouriteMoviesPopular = state.favouriteMoviesPopular.filter((movie) => movie.id !== action.payload.id);
+            state.favoritePopularMovieIds = state.favoritePopularMovieIds.filter(
+              (id) => id !== action.payload.id
+            );
           }
     
   },
