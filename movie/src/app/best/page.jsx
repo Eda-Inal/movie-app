@@ -11,6 +11,7 @@ import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import InfoIcon from '@mui/icons-material/Info';
 import Detail from '../details/page';
 import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie,removePopularFavoruiteMovie  } from '../redux/popularSlice';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import { removeFavoruiteMovie,setHideAlert,setShowAlert } from '../redux/movieSlice';
 
 const Best = () => {
@@ -45,11 +46,32 @@ const Best = () => {
       dispatch(setHideAlert());
     }, 1000);
   };
-  if (loading) return <Typography variant="h6">Loading...</Typography>;
+
   if (error) return <Typography variant="h6">Error: {error}</Typography>;
 
   return (
     <>
+    {loading && (
+      <Box 
+        sx={{ 
+          position: 'fixed', 
+          top: 0, 
+          left: 0, 
+          width: '100%', 
+          height: '100%', 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          backgroundColor: 'black', 
+          zIndex: 9999,
+        }}
+      >
+        <Box sx={{ textAlign: 'center', color: 'white' }}>
+          <HourglassBottomIcon sx={{ fontSize: '48px', marginBottom: '16px' }} />
+          <Typography variant="h4">Loading...</Typography>
+        </Box>
+      </Box>
+         )}   
       <Box 
   sx={{ 
     width:"90%",

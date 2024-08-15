@@ -121,19 +121,20 @@ function Watchlist() {
                 alignItems: 'center',
                 borderRadius: '50%', 
                 padding: '2px', 
+                backgroundColor:"white",
+                border: '2px solid #FF1938',
+                color:"#FF1938",
                 transition: 'transform 0.3s ease, background-color 0.3s ease',
                 '&:hover': {
-                  transform: 'scale(1.1)', 
-                  backgroundColor: '#FF1938',
+                  transform: 'scale(1.3)', 
+            
                 }
               }}>
                 <Tooltip title="remove from list">
 <FavoriteOutlinedIcon fontSize='small' onClick={()=>handleRemove(movie)}  sx={{
-  color: '#FF1938',
+  
   transition: 'color 0.3s ease',
-  '&:hover': {
-    color: 'white',
-  }
+  
   
   }}/>
                 </Tooltip>

@@ -11,11 +11,13 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import InfoIcon from '@mui/icons-material/Info';
 import Detail from '../details/page';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+
 
 
 function Home() {
   const dispatch = useDispatch();
-  const { movies, currentPage, totalPages, isDark,isDetailOpen,showAlert, favoriteMovieIds} = useSelector((state) => state.movie);
+  const { movies, currentPage, totalPages,loading, isDark,isDetailOpen,showAlert, favoriteMovieIds,selectedMovie} = useSelector((state) => state.movie);
 
   
 
@@ -30,7 +32,7 @@ function Home() {
 
   const handleLoadMore = () => {
     dispatch(incrementPage());
-    dispatch(fetchTopRatedMovies(currentPage + 1)); 
+   
   };
   const handleMovieSelect = (movie) => {
     dispatch(setSelectedMovie(movie)); 
@@ -38,6 +40,9 @@ function Home() {
    
 
   };
+  const handleBackDrop= (movie) => {
+    dispatch(setSelectedMovie(movie));
+  }
   const handleFavouriteMovie = (movie) => {
     if (favoriteMovieIds.includes(movie.id)) {
       dispatch(removeFavoruiteMovie(movie));
@@ -58,10 +63,31 @@ function Home() {
     }, 1000);
   };
   
- 
+  const featuredMovie = selectedMovie || movies[0];
 
   return (
     <>
+    {loading && (
+      <Box 
+        sx={{ 
+          position: 'fixed', 
+          top: 0, 
+          left: 0, 
+          width: '100%', 
+          height: '100%', 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          backgroundColor: 'black', 
+          zIndex: 9999,
+        }}
+      >
+        <Box sx={{ textAlign: 'center', color: 'white' }}>
+          <HourglassBottomIcon sx={{ fontSize: '48px', marginBottom: '16px' }} />
+          <Typography variant="h4">Loading...</Typography>
+        </Box>
+      </Box>
+         )}   
   <Box 
   sx={{ 
     width:"90%",
@@ -91,7 +117,7 @@ function Home() {
       <Box 
         sx={{
           width: '90%',
-          height: '60vh',
+          height: '70vh',
           margin: '0 auto',
           position: 'relative',
           display: 'flex',
@@ -109,15 +135,14 @@ function Home() {
         }}
       >
         
-        {movies.length > 0 && (
+        {featuredMovie  && (
           <Image
-            src={`https://image.tmdb.org/t/p/original${movies[0].backdrop_path}`} 
-            layout="fill"
-            objectFit="cover"
-            alt={movies[0].title}
-            style={{ filter: 'brightness(60%)' }}
-            objectPosition="top" 
-          />
+          src={`https://image.tmdb.org/t/p/original${featuredMovie.backdrop_path}`}
+          layout="fill"
+          objectFit="cover"
+          alt={featuredMovie.title}
+          objectPosition="top"
+        />
         )}
         <Box
           sx={{
@@ -134,11 +159,11 @@ function Home() {
           }}
         >
           <Typography variant="h4">
-            {movies.length > 0 ? movies[0].title : "Featured Movie Title"}
+            {featuredMovie ? featuredMovie.title : "Featured Movie Title"}
           </Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography variant="body1">
-              {movies.length > 0 ? movies[0].genre : "Genre"}
+            {featuredMovie ? featuredMovie.genre : "Genre"}
             </Typography>
            
           </Box>
@@ -163,9 +188,9 @@ function Home() {
       </Box>
       <Box sx={{ width: '90%', margin: '0 auto', padding: '16px 0' }}>
         <Grid container spacing={3}>
-          {movies.slice(1).map((movie, index) => (
+          {movies.slice(0, currentPage * 12 ).map((movie, index) => (
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
-              <Box 
+              <Box  onClick={() => handleBackDrop(movie)} 
                 sx={{
                   height:400,
                   position: 'relative',
@@ -309,6 +334,7 @@ onClick={() => handleMovieSelect(movie)}
       </Box>
       {isDetailOpen && <Detail />}
       {showAlert && <Alert />}
+      
       
     </>
   );

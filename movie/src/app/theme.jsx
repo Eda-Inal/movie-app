@@ -29,13 +29,13 @@ const darkTheme = createTheme({
       main: "#2D2D30"
     },
     error: {
-      main: "#DA4242"
+      main: "#fa4d56"
     },
     themeColor: {
       main: "#e9b208"
     },
     success: {
-      main: "#1ECB12",
+      main: "#24a148",
       contrastText: '#000',
     },
     background: {
@@ -153,10 +153,10 @@ const lightTheme = createTheme({
       main: "#00B38A"
     },
     error: {
-      main: "#DA4242"
+      main: "#da1e28"
     },
     success: {
-      main: "#1ECB12",
+      main: "#198038",
       contrastText: '#000',
     },
     sideBarColor: {

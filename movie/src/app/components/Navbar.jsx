@@ -8,6 +8,8 @@ import { useTheme, keyframes, styled } from '@mui/material/styles';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import CloseIcon from '@mui/icons-material/Close';
+import { SiThemoviedatabase } from "react-icons/si";
+import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import Link from 'next/link';
 import Search from './search';
 
@@ -74,8 +76,9 @@ function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "transparent" }}>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Typography variant="h1" component="div" color="secondary" sx={{ flex: 1, textAlign: 'left' }}>
-              Movie
+            <Typography variant="h2" component="div" color="secondary" sx={{ flex: 1, textAlign: 'left',display:"flex", alignItems:"center"  }}>
+            
+            <SiThemoviedatabase />  FilmLab
             </Typography>
             <Box sx={{ flex: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'center' }}>
               <Search />
@@ -84,7 +87,7 @@ function Navbar() {
             <Link href="/home" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
     <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
       <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
-        Home
+       Top Rated
       </Typography>
     </Button>
   </Link>
@@ -98,7 +101,7 @@ function Navbar() {
   <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
     <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
       <Typography  component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
-        Best Movies
+        Upcoming
       </Typography>
     </Button>
   </Link>
@@ -168,20 +171,20 @@ function Navbar() {
           </Box>
           <Link href="/home" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
-              <HomeOutlinedIcon className={styles.icon} color="secondary" />
-              <ListItemText primary="Home" sx={{ textTransform: 'capitalize' }} />
+              <MovieFilterOutlinedIcon className={styles.icon} color="secondary" />
+              <ListItemText primary="Top Rated" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
           <Link href="/watchlist" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
-              <MovieFilterOutlinedIcon className={styles.icon} color="secondary" />
+              <FavoriteBorderOutlinedIcon  className={styles.icon} color="secondary" />
               <ListItemText primary="Watchlist" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
           <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton>
-              <FavoriteBorderOutlinedIcon className={styles.icon} color="secondary" />
-              <ListItemText primary="Best Movies" sx={{ textTransform: 'capitalize' }} />
+              <MovieCreationOutlinedIcon className={styles.icon} color="secondary" />
+              <ListItemText primary="Upcoming" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
           <ListItemButton onClick={handleChangeIcon}>
