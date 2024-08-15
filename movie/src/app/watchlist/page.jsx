@@ -28,11 +28,11 @@ function Watchlist() {
   return (
     <>
    
-   <Box sx={{ width: '90%'}}>
+   <Box sx={{width:"90%",margin:"0 auto"}}>
    <Box 
   sx={{ 
-    width:"90%",
-    textAlign: 'left',
+ 
+  width:"100%",
     margin:"0 auto " ,
     fontWeight: '600', 
     marginTop: '15px', 
@@ -43,10 +43,17 @@ function Watchlist() {
   <Box sx={{
     display:"flex",
     alignItems:"center",
+    flexDirection:{xs:"column",md:"row"},
+ justifyContent:{xs:"center",md:"start"}
+  
+    
+
     
   }}
   
-  ><Typography color="secondary.main" variant='h2' marginRight={1}> Your Personal Watchlist:</Typography>
+  ><Typography color="secondary.main" variant='h2' marginRight={1} sx={{
+    mb:{xs:1,sm:0}
+  }}> Your Personal Watchlist:</Typography>
   <Typography variant='h4'>Movies You Love</Typography>
   </Box>
 
@@ -54,19 +61,22 @@ function Watchlist() {
   
   
 </Box>
-<Box  sx={{width:"90%",  margin:"0 auto"}}>
+<Box  sx={{width:"90%",  margin:"0 auto",
+  display:"flex",  justifyContent:{xs:"center",md:"start"},
+}}>
 {!allFavouriteMovies.length && (
     <Box 
       sx={{
         maxWidth:"400px",
-        
-        mt: "20px",
+ 
+        mt: {xs:1,md:2},
         padding: "1rem",
         borderRadius: "8px",
         backgroundColor: "error.main",
         color: "white",
         display: "flex",
         alignItems: "center",
+       
         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
         animation: "fadeIn 1s ease-in",
       }}

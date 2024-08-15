@@ -27,11 +27,14 @@ export const movieSlice = createSlice({
     showAlert: false,
     favoriteMovieIds: [],
     alertMessage: '',
-      alertColor: 'secondary.main'
+      alertColor: 'secondary.main',
+      addIcon : true,
 
   },
   reducers: {
-  
+  setAddIcon : (state) => {
+state.addIcon = !state.addIcon
+  },
 setShowAlert :(state,action) => {
   state.showAlert = true
   state.alertMessage = action.payload.message;
@@ -93,5 +96,5 @@ if(!movieExists){
       });
   },
 });
-export const { setSidebar, setIsDark, incrementPage,setSelectedMovie, toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert } = movieSlice.actions;
+export const { setSidebar, setIsDark, incrementPage,setSelectedMovie, toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert,setAddIcon } = movieSlice.actions;
 export default movieSlice.reducer;

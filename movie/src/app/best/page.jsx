@@ -13,7 +13,7 @@ import Detail from '../details/page';
 import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie,removePopularFavoruiteMovie  } from '../redux/popularSlice';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import { removeFavoruiteMovie,setHideAlert,setShowAlert } from '../redux/movieSlice';
-
+import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 const Best = () => {
   const dispatch = useDispatch();
   const { movies, loading, error, isDetailVisible, favoritePopularMovieIds } = useSelector((state) => state.popularMovies);
@@ -86,10 +86,13 @@ const Best = () => {
   <Box sx={{
     display:"flex",
     alignItems:"center",
+    flexDirection:{xs:"column",sm:"row"},
     
   }}
   
-  ><Typography color="secondary.main" variant='h2' marginRight={1}> Discover </Typography>
+  ><Typography color="secondary.main" variant='h2' marginRight={1} sx={{
+    mb:{xs:1,sm:0}
+  }}> Discover </Typography>
   <Typography variant='h4'>the Latest Blockbusters</Typography>
   </Box>
 
@@ -120,6 +123,43 @@ const Best = () => {
                 alt={movie.title}
                 objectPosition="top" 
               />
+               <Box sx={{
+                    position:"absolute",
+                    top:"50%",
+                  left:"50%",
+                  transform: 'translate(-50%, -50%)',
+                  backgroundColor: "rgba(0, 0, 0, .7)",
+                  borderRadius:"50%",
+                  display:"flex",
+                  alignItems:"center",
+                  
+                 
+
+                 
+                 
+                
+
+                }}><PlayCircleFilledWhiteOutlinedIcon color='white' sx={{fontSize:"60px", '&:hover': {
+                  transform: 'scale(1.1)',
+                },
+}}/>
+
+                </Box>
+                <Box
+                sx={{
+                  position: 'absolute',
+                  top: 15,
+                  left: 8,
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  color: 'white',
+                  borderRadius: '4px',
+                  padding: '2px 8px',
+                  
+                }}
+              >
+               
+                <Typography variant="h5">HD</Typography>
+              </Box>
               <Box
                 sx={{
                   position: 'absolute',

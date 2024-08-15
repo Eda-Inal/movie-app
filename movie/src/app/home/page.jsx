@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Alert from '../components/alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTopRatedMovies , incrementPage, setSelectedMovie,toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert} from '../redux/movieSlice';
+import { fetchTopRatedMovies , incrementPage, setSelectedMovie,toggleDetail,addFavoruiteMovie,removeFavoruiteMovie,setShowAlert,setHideAlert,setAddIcon} from '../redux/movieSlice';
 import { Grid, Box, Typography, Button, FormControl, Select, MenuItem,Tooltip } from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -13,13 +13,14 @@ import InfoIcon from '@mui/icons-material/Info';
 import Detail from '../details/page';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
-import HdIcon from '@mui/icons-material/Hd';
+import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+
 
 
 
 function Home() {
   const dispatch = useDispatch();
-  const { movies, currentPage, totalPages,loading, isDark,isDetailOpen,showAlert, favoriteMovieIds,selectedMovie} = useSelector((state) => state.movie);
+  const { movies, currentPage, totalPages,loading, isDark,isDetailOpen,showAlert, favoriteMovieIds,selectedMovie,addIcon} = useSelector((state) => state.movie);
 
   
 
@@ -42,6 +43,9 @@ function Home() {
    
 
   };
+  const handleBackDropIcon = () => {
+dispatch(setAddIcon())
+  }
   const handleBackDrop= (movie) => {
     dispatch(setSelectedMovie(movie));
   }
@@ -104,10 +108,14 @@ function Home() {
   <Box sx={{
     display:"flex",
     alignItems:"center",
+    flexDirection:{xs:"column",sm:"row"},
+    
     
   }}
   
-  ><Typography color="secondary.main" variant='h2' marginRight={1}>Top Rated Films:</Typography>
+  ><Typography color="secondary.main" variant='h2' sx={{
+    mb:{xs:1,sm:0}
+  }} marginRight={1}>Top Rated Films:</Typography>
   <Typography variant='h4'>A Curated Collection</Typography>
   </Box>
 
@@ -171,9 +179,13 @@ function Home() {
           </Box>
           <Box sx={{ display: 'flex', gap: '8px', flexDirection: { xs: 'column', sm: 'row' } }}>
             <Button variant="contained" color="secondary" sx={{ textTransform: 'capitalize' }}>
-              <PlayCircleOutlineIcon fontSize='small' /> Watch Now
+              <PlayCircleOutlineIcon fontSize='small' sx={{marginRight:0.5}} /> Watch Now
             </Button>
-            <Button 
+            <Button onClick={() => {
+              handleFavouriteMovie(featuredMovie)
+            handleBackDropIcon()
+          }
+            }
               variant="outlined" 
               color="secondary" 
               sx={{ 
@@ -183,7 +195,19 @@ function Home() {
                 backdropFilter: 'blur(50px)' 
               }}
             >
-              <AddCircleOutlineRoundedIcon fontSize='small' /> Add to Wishlist
+            {
+  addIcon ? (
+    <>
+      <AddCircleOutlineRoundedIcon fontSize='small' sx={{marginRight:0.5}} /> Add to Wishlist
+    </>
+  ) : (
+    <>
+      <CheckCircleOutlineOutlinedIcon fontSize='small' sx={{marginRight:0.5}} /> Added to Wishlist
+    </>
+  )
+}
+
+            
             </Button>
           </Box>
         </Box>
@@ -222,6 +246,7 @@ function Home() {
                   borderRadius:"50%",
                   display:"flex",
                   alignItems:"center",
+                
                  
 
                  
@@ -243,6 +268,7 @@ function Home() {
                   color: 'white',
                   borderRadius: '4px',
                   padding: '2px 8px',
+                  
                 }}
               >
                

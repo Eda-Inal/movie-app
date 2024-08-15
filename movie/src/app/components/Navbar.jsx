@@ -170,24 +170,27 @@ function Navbar() {
             <Search />
           </Box>
           <Link href="/home" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemButton>
-              <MovieFilterOutlinedIcon className={styles.icon} color="secondary" />
-              <ListItemText primary="Top Rated" sx={{ textTransform: 'capitalize' }} />
+            <ListItemButton onClick={handleSidebarFalse}>
+              <MovieFilterOutlinedIcon  className={styles.icon} color="secondary" />
+              <ListItemText  primary="Top Rated" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
           <Link href="/watchlist" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemButton>
+            <ListItemButton onClick={handleSidebarFalse}>
               <FavoriteBorderOutlinedIcon  className={styles.icon} color="secondary" />
-              <ListItemText primary="Watchlist" sx={{ textTransform: 'capitalize' }} />
+              <ListItemText  primary="Watchlist" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
           <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
-            <ListItemButton>
+            <ListItemButton onClick={handleSidebarFalse}>
               <MovieCreationOutlinedIcon className={styles.icon} color="secondary" />
               <ListItemText primary="Upcoming" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
-          <ListItemButton onClick={handleChangeIcon}>
+          <ListItemButton onClick={() => {
+            handleChangeIcon();
+            handleSidebarFalse()
+          }}>
             {
               isDark ? <LightModeIcon className={styles.icon} color='themeColor' /> : <DarkModeIcon className={styles.icon} color='themeColor' />
             }
