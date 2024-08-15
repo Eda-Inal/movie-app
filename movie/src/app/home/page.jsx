@@ -12,6 +12,8 @@ import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import InfoIcon from '@mui/icons-material/Info';
 import Detail from '../details/page';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import HdIcon from '@mui/icons-material/Hd';
 
 
 
@@ -211,6 +213,41 @@ function Home() {
                   alt={movie.title}
                   objectPosition="top" 
                 />
+                <Box sx={{
+                    position:"absolute",
+                    top:"50%",
+                  left:"50%",
+                  transform: 'translate(-50%, -50%)',
+                  backgroundColor: "rgba(0, 0, 0, .7)",
+                  borderRadius:"50%",
+                  display:"flex",
+                  alignItems:"center",
+                 
+
+                 
+                 
+                
+
+                }}><PlayCircleFilledWhiteOutlinedIcon color='white' sx={{fontSize:"60px", '&:hover': {
+                  transform: 'scale(1.1)',
+                },
+}}/>
+
+                </Box>
+                <Box
+                sx={{
+                  position: 'absolute',
+                  top: 15,
+                  left: 8,
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  color: 'white',
+                  borderRadius: '4px',
+                  padding: '2px 8px',
+                }}
+              >
+               
+                <Typography variant="h5">HD</Typography>
+              </Box>
                 <Box sx={{
                   position:"absolute",
                   backgroundColor: "rgba(0, 0, 0, .7)",
