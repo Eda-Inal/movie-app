@@ -1,3 +1,4 @@
+'use client'
 import { useState, useEffect } from 'react';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 
