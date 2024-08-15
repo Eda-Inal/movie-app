@@ -43,21 +43,21 @@ function Home() {
    
 
   };
-  const handleBackDropIcon = () => {
-dispatch(setAddIcon())
-  }
+
   const handleBackDrop= (movie) => {
     dispatch(setSelectedMovie(movie));
   }
   const handleFavouriteMovie = (movie) => {
     if (favoriteMovieIds.includes(movie.id)) {
       dispatch(removeFavoruiteMovie(movie));
+      dispatch(setAddIcon())
       dispatch(setShowAlert({
         message: 'Movie removed from Watchlist!',
         color: 'error.main',
       }));
     } else {
       dispatch(addFavoruiteMovie(movie));
+      dispatch(setAddIcon())
       dispatch(setShowAlert({
         message: 'Movie added to Watchlist!',
         color: 'success.main',
@@ -183,7 +183,7 @@ dispatch(setAddIcon())
             </Button>
             <Button onClick={() => {
               handleFavouriteMovie(featuredMovie)
-            handleBackDropIcon()
+         
           }
             }
               variant="outlined" 
