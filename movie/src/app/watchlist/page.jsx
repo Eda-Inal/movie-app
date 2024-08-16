@@ -1,4 +1,4 @@
-
+'use client'
 import React from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { removeFavoruiteMovie } from '../redux/movieSlice';
@@ -115,10 +115,10 @@ function Watchlist() {
      
       <Grid container spacing={2} sx={{ width: '90%', margin: '1.5rem auto' }}>
         {allFavouriteMovies.map((movie, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
+          <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={index}>
             <Box sx={{ position: 'relative', height: 400, borderRadius: '16px', overflow: 'hidden', cursor: 'pointer',  transition: 'transform 0.3s ease',
               '&:hover': { transform: 'scale(1.05)' } }}>
-              <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} layout="fill" objectFit="cover" alt={movie.title} />
+              <Image src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} layout="fill" objectFit="cover" alt={movie.title}  objectPosition="top"  />
               <Box sx={{ position: 'absolute', bottom: 0, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: '10px', display: 'flex', justifyContent: 'space-between' }}>
                 <Typography color="white" variant="body1">{movie.title}</Typography>
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>

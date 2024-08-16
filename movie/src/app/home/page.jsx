@@ -126,8 +126,8 @@ function Home() {
 
       <Box 
         sx={{
-          width: '90%',
-          height: '70vh',
+          width: {xs:"95%",sm:"90%"},
+          height: {xs:"50vh",sm:"70vh"},
           margin: '0 auto',
           position: 'relative',
           display: 'flex',
@@ -181,42 +181,38 @@ function Home() {
             <Button variant="contained" color="secondary" sx={{ textTransform: 'capitalize' }}>
               <PlayCircleOutlineIcon fontSize='small' sx={{marginRight:0.5}} /> Watch Now
             </Button>
-            <Button onClick={() => {
-              handleFavouriteMovie(featuredMovie)
-         
-          }
-            }
-              variant="outlined" 
-              color="secondary" 
-              sx={{ 
-                textTransform: 'capitalize', 
-                borderWidth: '2px', 
-                borderColor: 'secondary.main', 
-                backdropFilter: 'blur(50px)' 
-              }}
-            >
-            {
-  addIcon ? (
-    <>
-      <AddCircleOutlineRoundedIcon fontSize='small' sx={{marginRight:0.5}} /> Add to Wishlist
-    </>
-  ) : (
+            <Button
+  onClick={() => handleFavouriteMovie(featuredMovie)}
+  variant="outlined" 
+  color="secondary" 
+  sx={{ 
+    textTransform: 'capitalize', 
+    borderWidth: '2px', 
+    borderColor: 'secondary.main', 
+    backdropFilter: 'blur(50px)' 
+  }}
+>
+{
+  favoriteMovieIds.includes(featuredMovie.id) ? (
     <>
       <CheckCircleOutlineOutlinedIcon fontSize='small' sx={{marginRight:0.5}} /> Added to Wishlist
     </>
+  ) : (
+    <>
+      <AddCircleOutlineRoundedIcon fontSize='small' sx={{marginRight:0.5}} /> Add to Wishlist
+    </>
   )
 }
+</Button>
 
-            
-            </Button>
           </Box>
         </Box>
       </Box>
-      <Box sx={{ width: '90%', margin: '0 auto', padding: '16px 0' }}>
+      <Box sx={{ width: {xs:"95%",sm:"90%"}, margin: '0 auto', padding: '20px 0' }}>
         <Grid container spacing={3}>
           {movies.slice(0, currentPage * 12 ).map((movie, index) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} key={index}>
-              <Box  onClick={() => handleBackDrop(movie)} 
+            <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={index}>
+              <Box   
                 sx={{
                   height:400,
                   position: 'relative',
@@ -275,6 +271,7 @@ function Home() {
                 <Typography variant="h5">HD</Typography>
               </Box>
                 <Box sx={{
+                  
                   position:"absolute",
                   backgroundColor: "rgba(0, 0, 0, .7)",
                   color:"whitesmoke",
