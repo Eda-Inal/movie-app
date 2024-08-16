@@ -1,4 +1,4 @@
-'use client'
+
 import React from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { removeFavoruiteMovie } from '../redux/movieSlice';
@@ -8,7 +8,12 @@ import Image from 'next/image';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import { removePopularFavoruiteMovie } from '../redux/popularSlice';
 
+
+
 function Watchlist() {
+
+  
+  
   const dispatch = useDispatch();
   const { favouriteMoviesTopRated } = useSelector((state) => state.movie);
   const {favouriteMoviesPopular} = useSelector((state =>state.popularMovies ))

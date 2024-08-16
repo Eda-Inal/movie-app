@@ -7,6 +7,7 @@ import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { toggleDetail } from '../redux/movieSlice';
 import { clearSelectedPopularMovie, togglePopularDetail } from '../redux/popularSlice';
+import genres from "../genres.json"
 
 function Detail() {
   const dispatch = useDispatch();
@@ -23,11 +24,15 @@ function Detail() {
     dispatch(clearSelectedPopularMovie());
   };
 
+
   const movie = selectedPopularMovie || selectedMovie;
   const isVisible = isDetailVisible || isDetailOpen;
 
   if (!movie || !isVisible) return null;
-
+  const genreNames = movie.genre_ids.map(genreId => {
+    const genre = genres.find(g => g.id === genreId);
+    return genre ? genre.name : null;
+  }).filter(name => name).join(', ');
   return (
     <>
       <Box
@@ -69,7 +74,7 @@ function Detail() {
           </Typography>
           <Typography variant="h6" sx={{ my: '10px' }}>{movie.release_date}</Typography>
           <Typography variant="h6">
-            Genre
+            Genre: {genreNames}
           </Typography>
           <Typography variant="h6" sx={{ my: '10px' }}> {movie.original_language.toUpperCase()}</Typography>
           <CloseIcon onClick={handleClose} color="accent" sx={{
