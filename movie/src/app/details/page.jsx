@@ -7,7 +7,9 @@ import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import { toggleDetail } from '../redux/movieSlice';
 import { clearSelectedPopularMovie, togglePopularDetail } from '../redux/popularSlice';
-import genres from "../genres.json"
+import genres from "../genres.json";
+import Image from 'next/image';
+import img from "../../../public/her.jpg"
 
 function Detail() {
   const dispatch = useDispatch();
@@ -72,11 +74,19 @@ function Detail() {
           <Typography variant="h6">
             {movie.overview}
           </Typography>
-          <Typography variant="h6" sx={{ my: '10px' }}>{movie.release_date}</Typography>
+          <Typography variant="h6" sx={{ my: '10px' }}>{movie.release_date.slice(0,4)}</Typography>
           <Typography variant="h6">
-            Genre: {genreNames}
+            {genreNames}
           </Typography>
           <Typography variant="h6" sx={{ my: '10px' }}> {movie.original_language.toUpperCase()}</Typography>
+          <Typography variant='h6'>Cast</Typography>
+          <Box sx={{display:"flex", mr:"15px"}}>
+            <Box sx={{display:"flex",flexDirection:"column",mr:"10px",alignItems:"center"}}>
+<Box><Image width={60} height={60} src={img}/></Box>
+<Typography variant='h6'>name</Typography>
+            </Box>
+           
+          </Box>
           <CloseIcon onClick={handleClose} color="accent" sx={{
             fontSize: '1.6rem',
             cursor: 'pointer',

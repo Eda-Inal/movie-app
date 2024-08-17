@@ -18,6 +18,7 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 
 
 
+
 function Home() {
   const dispatch = useDispatch();
   const { movies, currentPage, totalPages,loading, isDark,isDetailOpen,showAlert, favoriteMovieIds,selectedMovie,addIcon} = useSelector((state) => state.movie);
@@ -193,16 +194,17 @@ function Home() {
   }}
 >
 {
-  favoriteMovieIds.includes(featuredMovie.id) ? (
+  featuredMovie && favoriteMovieIds.includes(featuredMovie.id) ? (
     <>
-      <CheckCircleOutlineOutlinedIcon fontSize='small' sx={{marginRight:0.5}} /> Added to Wishlist
+      <CheckCircleOutlineOutlinedIcon fontSize='small' sx={{ marginRight: 0.5 }} /> Added to Wishlist
     </>
   ) : (
     <>
-      <AddCircleOutlineRoundedIcon fontSize='small' sx={{marginRight:0.5}} /> Add to Wishlist
+      <FavoriteBorderIcon fontSize='small' sx={{ marginRight: 0.5 }} /> Add to Wishlist
     </>
   )
 }
+
 </Button>
 
           </Box>
@@ -243,16 +245,14 @@ function Home() {
                   display:"flex",
                   alignItems:"center",
                 
-                 
-
-                 
-                 
-                
-
-                }}><PlayCircleFilledWhiteOutlinedIcon color='white' sx={{fontSize:"60px", '&:hover': {
+                }}>
+                <Button sx={{color:"white"}}>
+                <PlayCircleFilledWhiteOutlinedIcon  sx={{fontSize:"60px", '&:hover': {
                   transform: 'scale(1.1)',
                 },
 }}/>
+                </Button>
+                
 
                 </Box>
                 <Box

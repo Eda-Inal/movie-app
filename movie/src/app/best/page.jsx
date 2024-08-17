@@ -4,7 +4,7 @@ import { useState,useEffect } from 'react';
 import Alert from '../components/alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPopularMovies } from '../redux/popularSlice'
-import { Grid, Box, Typography , Tooltip} from '@mui/material';
+import { Grid, Box, Typography , Tooltip,Button} from '@mui/material';
 import Image from 'next/image';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
@@ -139,10 +139,12 @@ const Best = () => {
                  
                 
 
-                }}><PlayCircleFilledWhiteOutlinedIcon color='white' sx={{fontSize:"60px", '&:hover': {
+                }}> <Button sx={{color:"white"}}>
+                <PlayCircleFilledWhiteOutlinedIcon  sx={{fontSize:"60px", '&:hover': {
                   transform: 'scale(1.1)',
                 },
 }}/>
+                </Button>
 
                 </Box>
                 <Box
