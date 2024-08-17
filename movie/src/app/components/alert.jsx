@@ -22,7 +22,7 @@ function Alert() {
       <Box
         sx={{
           position: "fixed",
-          top: "1rem",
+          top: "0.5rem",
           right: "1rem",
           backgroundColor: alertColor,
           color: "white",

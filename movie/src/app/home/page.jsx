@@ -72,7 +72,7 @@ function TopRated() {
     }, 1000);
   };
   const featuredMovie = selectedMovie || movies[0];
-  
+
   const handlePlayVideo = async (movieId) => {
     const result = await dispatch(fetchMovieVideo(movieId)); 
 
@@ -171,6 +171,8 @@ function TopRated() {
           objectPosition="top"
         />
         )}
+     
+           
         <Box
           sx={{
             position: 'absolute',
@@ -195,7 +197,7 @@ function TopRated() {
            
           </Box>
           <Box sx={{ display: 'flex', gap: '8px', flexDirection: { xs: 'column', sm: 'row' } }}>
-            <Button variant="contained" color="secondary" sx={{ textTransform: 'capitalize' }}>
+            <Button onClick={() => handlePlayVideo(featuredMovie.id)} variant="contained" color="secondary" sx={{ textTransform: 'capitalize' }}>
               <PlayCircleOutlineIcon fontSize='small' sx={{marginRight:0.5}} /> Watch Now
             </Button>
             <Button
@@ -251,7 +253,8 @@ function TopRated() {
                   alt={movie.title}
                   objectPosition="top" 
                 />
-                <Box sx={{
+                 <Tooltip title="Watch trailer">
+                 <Box sx={{
                     position:"absolute",
                     top:"50%",
                   left:"50%",
@@ -271,6 +274,8 @@ function TopRated() {
                 
 
                 </Box>
+                 </Tooltip>
+             
                 <Box
                 sx={{
                   position: 'absolute',

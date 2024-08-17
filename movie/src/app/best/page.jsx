@@ -137,7 +137,8 @@ const Best = () => {
                 alt={movie.title}
                 objectPosition="top" 
               />
-               <Box sx={{
+              <Tooltip title="Watch trailer">
+              <Box sx={{
                     position:"absolute",
                     top:"50%",
                   left:"50%",
@@ -146,13 +147,6 @@ const Best = () => {
                   borderRadius:"50%",
                   display:"flex",
                   alignItems:"center",
-                  
-                 
-
-                 
-                 
-                
-
                 }}> <Button sx={{color:"white"}} onClick={() => handlePlayVideo(movie.id)}>
                 <PlayCircleFilledWhiteOutlinedIcon  sx={{fontSize:"60px", '&:hover': {
                   transform: 'scale(1.1)',
@@ -161,6 +155,8 @@ const Best = () => {
                 </Button>
 
                 </Box>
+              </Tooltip>
+            
                 <Box
                 sx={{
                   position: 'absolute',
