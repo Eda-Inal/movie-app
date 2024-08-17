@@ -111,7 +111,7 @@ const Best = () => {
   </Box>
 
 </Box>
-    <Grid style={{ width: '90%', margin: '0 auto', padding: '20px' }}>
+    <Grid style={{ width: '98%', margin: '0 auto', padding: '20px' }}>
       <Grid container spacing={2}>
         {movies.map((movie) => (
           <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={movie.id}>

@@ -122,7 +122,7 @@ function TopRated() {
 
       <Box
         sx={{
-          width: { xs: "95%", sm: "90%" },
+          width: { xs: "95%", sm: "96%" },
           height: { xs: "50vh", sm: "70vh" },
           margin: '0 auto',
           position: 'relative',
@@ -135,9 +135,7 @@ function TopRated() {
           borderRadius: '16px',
           cursor: 'pointer',
           transition: 'transform 0.3s ease',
-          '&:hover': {
-            transform: 'scale(1.02)'
-          },
+          
         }}
       >
 
@@ -207,7 +205,7 @@ function TopRated() {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ width: { xs: "95%", sm: "90%" }, margin: '0 auto', padding: '20px 0' }}>
+      <Box sx={{ width: { xs: "95%", sm: "96%" }, margin: '0 auto', padding: '20px 0' }}>
         <Grid container spacing={3}>
           {movies.slice(0, currentPage * 12).map((movie, index) => (
             <Grid item xs={6} sm={6} md={4} lg={3} xl={2} key={index}>
