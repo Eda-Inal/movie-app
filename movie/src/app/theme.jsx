@@ -103,6 +103,7 @@ const darkTheme = createTheme({
         fontSize: '1.25rem',
       },
     },
+  
     body1: {
       fontSize: '1rem',
       '@media (min-width:600px)': {

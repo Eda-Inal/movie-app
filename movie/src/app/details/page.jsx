@@ -1,6 +1,7 @@
 
 'use client'
 import React from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Box, Typography } from '@mui/material';
 import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
@@ -10,6 +11,7 @@ import { clearSelectedPopularMovie, togglePopularDetail } from '../redux/popular
 import genres from "../genres.json";
 import Image from 'next/image';
 import img from "../../../public/her.jpg"
+import { fetchCast } from '../redux/castSlice';
 
 function Detail() {
   const dispatch = useDispatch();
@@ -19,6 +21,7 @@ function Detail() {
   const selectedPopularMovie = useSelector((state) => state.popularMovies.selectedPopularMovie);
   const isDetailOpen = useSelector((state) => state.movie.isDetailOpen);
   const isDetailVisible = useSelector((state) => state.popularMovies.isDetailVisible);
+  const cast = useSelector((state) => state.cast.cast);
 
   const handleClose = () => {
     dispatch(toggleDetail(false));
@@ -26,7 +29,7 @@ function Detail() {
     dispatch(clearSelectedPopularMovie());
   };
 
-
+ 
   const movie = selectedPopularMovie || selectedMovie;
   const isVisible = isDetailVisible || isDetailOpen;
 
@@ -35,6 +38,11 @@ function Detail() {
     const genre = genres.find(g => g.id === genreId);
     return genre ? genre.name : null;
   }).filter(name => name).join(', ');
+  useEffect(() => {
+    if (movie) {
+      dispatch(fetchCast(movie.id)); 
+    }
+  }, [movie, dispatch]);
   return (
     <>
       <Box
@@ -78,15 +86,47 @@ function Detail() {
           <Typography variant="h6">
             {genreNames}
           </Typography>
-          <Typography variant="h6" sx={{ my: '10px' }}> {movie.original_language.toUpperCase()}</Typography>
-          <Typography variant='h6'>Cast</Typography>
-          <Box sx={{display:"flex", mr:"15px"}}>
-            <Box sx={{display:"flex",flexDirection:"column",mr:"10px",alignItems:"center"}}>
-<Box><Image width={60} height={60} src={img}/></Box>
-<Typography variant='h6'>name</Typography>
-            </Box>
-           
+         
+          <Typography variant="h6" sx={{mb:"5px"}}>Cast:</Typography>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
+      {cast.map(actor => (
+        <Box
+          key={actor.id}
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            width: '80px',  
+            height: '110px',
+            padding: '5px',  
+            borderRadius: '8px',
+            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+          }}
+        >
+          <Image
+            width={45}
+            height={68} 
+            src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+            alt={actor.name}
+            style={{ borderRadius: '4px' }} 
+          />
+          <Box
+            sx={{
+              marginTop: '5px',
+              textAlign: 'center',
+              fontSize: '10px', 
+              color: 'white',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis', 
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {actor.name}
           </Box>
+        </Box>
+      ))}
+    </Box>
           <CloseIcon onClick={handleClose} color="accent" sx={{
             fontSize: '1.6rem',
             cursor: 'pointer',
