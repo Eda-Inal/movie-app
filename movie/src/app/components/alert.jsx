@@ -8,14 +8,14 @@ function Alert() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    setVisible(true); 
+    setVisible(true);
     const timer = setTimeout(() => {
-      setVisible(false); 
-    },500 );
+      setVisible(false);
+    }, 500);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, []);
-  const { alertMessage,alertColor } = useSelector((state) => state.movie);
+  const { alertMessage, alertColor } = useSelector((state) => state.movie);
 
   return (
     visible && (
@@ -41,7 +41,7 @@ function Alert() {
         }}
       >
         <Typography variant="h6" sx={{ fontWeight: 500 }}>
-       {alertMessage}
+          {alertMessage}
         </Typography>
         <CheckCircleIcon sx={{ color: "white", marginLeft: "0.3rem", fontSize: "28px" }} />
       </Box>

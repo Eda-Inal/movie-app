@@ -4,9 +4,10 @@ import { darkTheme, lightTheme } from "./theme";
 import { Provider, useSelector } from "react-redux";
 import { store } from "./redux/store";
 import Navbar from "./components/Navbar";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ScrollToTop from "./components/scroll";
 import Footer from "./components/footer";
+import "./global.css";
 
 function ThemeWrapper({ children }) {
   const isDark = useSelector((state) => state.movie.isDark);
@@ -27,9 +28,11 @@ export default function RootLayout({ children }) {
         <Provider store={store}>
           <ThemeWrapper>
             <Navbar />
-            {children}
+            <main>
+              {children}
+            </main>
             <ScrollToTop />
-            <Footer/>
+            <Footer />
           </ThemeWrapper>
         </Provider>
       </body>

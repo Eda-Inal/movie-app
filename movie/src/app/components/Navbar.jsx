@@ -2,17 +2,17 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSidebar, setIsDark } from '../redux/movieSlice';
-import styles from './styles.module.css';
 import { AppBar, Box, Toolbar, Typography, Button, IconButton, List, ListItemButton, ListItemText, Tooltip } from '@mui/material';
-import { Menu as MenuIcon, ArrowBackIos as ArrowBackIosIcon, ArrowForwardIosOutlined as ArrowForwardIosOutlinedIcon, HomeOutlined as HomeOutlinedIcon, MovieFilterOutlined as MovieFilterOutlinedIcon, FavoriteBorderOutlined as FavoriteBorderOutlinedIcon } from '@mui/icons-material';
+import { Menu as MenuIcon, ArrowBackIos as ArrowBackIosIcon, ArrowForwardIosOutlined as ArrowForwardIosOutlinedIcon, HomeOutlined as HomeOutlinedIcon, MovieFilterOutlined as MovieFilterOutlinedIcon, FavoriteBorderOutlined as FavoriteBorderOutlinedIcon, MovieCreationOutlined as MovieCreationOutlinedIcon } from '@mui/icons-material';
 import { useTheme, keyframes, styled } from '@mui/material/styles';
+import { SiThemoviedatabase } from "react-icons/si";
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import CloseIcon from '@mui/icons-material/Close';
-import { SiThemoviedatabase } from "react-icons/si";
-import MovieCreationOutlinedIcon from '@mui/icons-material/MovieCreationOutlined';
 import Link from 'next/link';
-import Search from './search';
+import styles from './styles.module.css';
+
+
 
 const slideIn = keyframes`
   from {
@@ -36,7 +36,7 @@ const Sidebar = styled(Box, {
   shouldForwardProp: (prop) => prop !== 'isSidebar'
 })(({ isSidebar, theme }) => ({
   position: 'fixed',
-top:0,
+  top: 0,
   left: 0,
   height: '100vh',
   width: 250,
@@ -77,68 +77,68 @@ function Navbar() {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "transparent" }}>
           <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <Typography variant="h2" component="div" color="secondary" sx={{ flex: 1, textAlign: 'left',display:"flex", alignItems:"center"  }}>
-            
-            <SiThemoviedatabase />  FilmLab
+            <Typography variant="h2" component="div" color="secondary" sx={{ flex: 1, textAlign: 'left', display: "flex", alignItems: "center" }}>
+
+              <SiThemoviedatabase />  FilmLab
             </Typography>
             {/* <Box sx={{ flex: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'center' }}>
               <Search />
             </Box> */}
             <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-            <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
-    <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
-      <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
-       Top Rated
-      </Typography>
-    </Button>
-  </Link>
-  <Link href="/watchlist" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
-    <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
-      <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
-        Watchlist
-      </Typography>
-    </Button>
-  </Link>
-  <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
-    <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
-      <Typography  component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
-        Upcoming
-      </Typography>
-    </Button>
-  </Link>
-  <Button
-  onClick={handleChangeIcon}
-  sx={{
-    transition: 'transform 0.2s ease',
-    '&:hover': {
-      transform: 'scale(1.2)',
-    },
-  }}
->
-  {isDark ? (
-    <LightModeIcon
-      sx={{
-        display: { xs: 'none', lg: 'block' },
-        transition: 'transform 0.2s ease',
-        '&:hover': {
-          transform: 'rotate(180deg)',
-        },
-      }}
-      color='themeColor'
-    />
-  ) : (
-    <DarkModeIcon
-      sx={{
-        display: { xs: 'none', lg: 'block' },
-        transition: 'transform 0.5s ease',
-        '&:hover': {
-          transform: 'rotate(180deg)',
-        },
-      }}
-      color='themeColor'
-    />
-  )}
-</Button>
+              <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
+                  <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none', textTransform: 'capitalize' }}>
+                    Top Rated
+                  </Typography>
+                </Button>
+              </Link>
+              <Link href="/watchlist" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
+                  <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none', textTransform: 'capitalize' }}>
+                    Watchlist
+                  </Typography>
+                </Button>
+              </Link>
+              <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
+                  <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none', textTransform: 'capitalize' }}>
+                    Upcoming
+                  </Typography>
+                </Button>
+              </Link>
+              <Button
+                onClick={handleChangeIcon}
+                sx={{
+                  transition: 'transform 0.2s ease',
+                  '&:hover': {
+                    transform: 'scale(1.2)',
+                  },
+                }}
+              >
+                {isDark ? (
+                  <LightModeIcon
+                    sx={{
+                      display: { xs: 'none', lg: 'block' },
+                      transition: 'transform 0.2s ease',
+                      '&:hover': {
+                        transform: 'rotate(180deg)',
+                      },
+                    }}
+                    color='themeColor'
+                  />
+                ) : (
+                  <DarkModeIcon
+                    sx={{
+                      display: { xs: 'none', lg: 'block' },
+                      transition: 'transform 0.5s ease',
+                      '&:hover': {
+                        transform: 'rotate(180deg)',
+                      },
+                    }}
+                    color='themeColor'
+                  />
+                )}
+              </Button>
 
             </Box>
             {
@@ -172,14 +172,14 @@ function Navbar() {
           </Box> */}
           <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton onClick={handleSidebarFalse}>
-              <MovieFilterOutlinedIcon  className={styles.icon} color="secondary" />
-              <ListItemText  primary="Top Rated" sx={{ textTransform: 'capitalize' }} />
+              <MovieFilterOutlinedIcon className={styles.icon} color="secondary" />
+              <ListItemText primary="Top Rated" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
           <Link href="/watchlist" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton onClick={handleSidebarFalse}>
-              <FavoriteBorderOutlinedIcon  className={styles.icon} color="secondary" />
-              <ListItemText  primary="Watchlist" sx={{ textTransform: 'capitalize' }} />
+              <FavoriteBorderOutlinedIcon className={styles.icon} color="secondary" />
+              <ListItemText primary="Watchlist" sx={{ textTransform: 'capitalize' }} />
             </ListItemButton>
           </Link>
           <Link href="/best" passHref style={{ textDecoration: 'none', color: 'inherit' }}>

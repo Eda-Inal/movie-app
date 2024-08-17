@@ -14,7 +14,7 @@ import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie,removePopula
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import { removeFavoruiteMovie,setHideAlert,setShowAlert } from '../redux/movieSlice';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
-import { fetchMovieVideo } from '../redux/videSlice';
+import { fetchMovieVideo } from '../redux/videoSlice';
 const Best = () => {
   const dispatch = useDispatch();
   const { movies, loading, error, isDetailVisible, favoritePopularMovieIds } = useSelector((state) => state.popularMovies);

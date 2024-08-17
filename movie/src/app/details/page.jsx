@@ -1,22 +1,19 @@
-
 'use client'
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Box, Typography } from '@mui/material';
-import StarOutlinedIcon from '@mui/icons-material/StarOutlined';
-import CloseIcon from '@mui/icons-material/Close';
+import { StarOutlined as StarOutlinedIcon, Close as CloseIcon } from '@mui/icons-material';
 import { toggleDetail } from '../redux/movieSlice';
 import { clearSelectedPopularMovie, togglePopularDetail } from '../redux/popularSlice';
-import genres from "../genres.json";
-import Image from 'next/image';
-import img from "../../../public/her.jpg"
 import { fetchCast } from '../redux/castSlice';
+import Image from 'next/image';
+import genres from "../genres.json";
+
 
 function Detail() {
   const dispatch = useDispatch();
 
- 
+
   const selectedMovie = useSelector((state) => state.movie.selectedMovie);
   const selectedPopularMovie = useSelector((state) => state.popularMovies.selectedPopularMovie);
   const isDetailOpen = useSelector((state) => state.movie.isDetailOpen);
@@ -29,7 +26,7 @@ function Detail() {
     dispatch(clearSelectedPopularMovie());
   };
 
- 
+
   const movie = selectedPopularMovie || selectedMovie;
   const isVisible = isDetailVisible || isDetailOpen;
 
@@ -40,7 +37,7 @@ function Detail() {
   }).filter(name => name).join(', ');
   useEffect(() => {
     if (movie) {
-      dispatch(fetchCast(movie.id)); 
+      dispatch(fetchCast(movie.id));
     }
   }, [movie, dispatch]);
   return (
@@ -82,51 +79,51 @@ function Detail() {
           <Typography variant="h6">
             {movie.overview}
           </Typography>
-          <Typography variant="h6" sx={{ my: '10px' }}>{movie.release_date.slice(0,4)}</Typography>
+          <Typography variant="h6" sx={{ my: '10px' }}>{movie.release_date.slice(0, 4)}</Typography>
           <Typography variant="h6">
             {genreNames}
           </Typography>
-         
-          <Typography variant="h6" sx={{mb:"5px"}}>Cast:</Typography>
+
+          <Typography variant="h6" sx={{ mb: "5px" }}>Cast:</Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: '5px' }}>
-      {cast.map(actor => (
-        <Box
-          key={actor.id}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '80px',  
-            height: '110px',
-            padding: '5px',  
-            borderRadius: '8px',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-          }}
-        >
-          <Image
-            width={45}
-            height={68} 
-            src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
-            alt={actor.name}
-            style={{ borderRadius: '4px' }} 
-          />
-          <Box
-            sx={{
-              marginTop: '5px',
-              textAlign: 'center',
-              fontSize: '10px', 
-              color: 'white',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis', 
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {actor.name}
+            {cast.map(actor => (
+              <Box
+                key={actor.id}
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  width: '80px',
+                  height: '110px',
+                  padding: '5px',
+                  borderRadius: '8px',
+                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                <Image
+                  width={45}
+                  height={68}
+                  src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`}
+                  alt={actor.name}
+                  style={{ borderRadius: '4px' }}
+                />
+                <Box
+                  sx={{
+                    marginTop: '5px',
+                    textAlign: 'center',
+                    fontSize: '10px',
+                    color: 'white',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {actor.name}
+                </Box>
+              </Box>
+            ))}
           </Box>
-        </Box>
-      ))}
-    </Box>
           <CloseIcon onClick={handleClose} color="accent" sx={{
             fontSize: '1.6rem',
             cursor: 'pointer',

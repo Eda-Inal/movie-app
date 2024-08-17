@@ -5,7 +5,7 @@ export const fetchCast = createAsyncThunk(
   'cast/fetchCast',
   async (movieId) => {
     const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=3d6f6952453bf34233cb9f9eb9cd3739`);
-    return response.data.cast.slice(0, 3); 
+    return response.data.cast.slice(0, 6); 
   }
 );
 export const castSlice = createSlice({
