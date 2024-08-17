@@ -14,10 +14,12 @@ import { selectedPopularMovie,togglePopularDetail,addFavoruiteMovie,removePopula
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import { removeFavoruiteMovie,setHideAlert,setShowAlert } from '../redux/movieSlice';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+import { fetchMovieVideo } from '../redux/videSlice';
 const Best = () => {
   const dispatch = useDispatch();
   const { movies, loading, error, isDetailVisible, favoritePopularMovieIds } = useSelector((state) => state.popularMovies);
   const {showAlert} =  useSelector((state) => state.movie)
+  const { videos } = useSelector((state) => state.video);
   const handleInfoClick = (movie) => {
     dispatch(selectedPopularMovie(movie));
     dispatch(togglePopularDetail(true));
@@ -46,7 +48,19 @@ const Best = () => {
       dispatch(setHideAlert());
     }, 1000);
   };
-
+  const handlePlayVideo = async (movieId) => {
+    const result = await dispatch(fetchMovieVideo(movieId)); 
+    if (fetchMovieVideo.fulfilled.match(result)) {
+      const videoData = result.payload;
+      
+     
+      const youtubeVideo = videoData.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+      
+      if (youtubeVideo) {
+        window.open(`https://www.youtube.com/watch?v=${youtubeVideo.key}`, '_blank');
+      }
+    }
+  };
   if (error) return <Typography variant="h6">Error: {error}</Typography>;
 
   return (
@@ -139,7 +153,7 @@ const Best = () => {
                  
                 
 
-                }}> <Button sx={{color:"white"}}>
+                }}> <Button sx={{color:"white"}} onClick={() => handlePlayVideo(movie.id)}>
                 <PlayCircleFilledWhiteOutlinedIcon  sx={{fontSize:"60px", '&:hover': {
                   transform: 'scale(1.1)',
                 },

@@ -14,6 +14,7 @@ import Detail from '../details/page';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
+import { fetchMovieVideo } from '../redux/videSlice';
 
 
 
@@ -22,6 +23,7 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 function TopRated() {
   const dispatch = useDispatch();
   const { movies, currentPage, totalPages,loading, isDark,isDetailOpen,showAlert, favoriteMovieIds,selectedMovie,addIcon} = useSelector((state) => state.movie);
+  const { videos } = useSelector((state) => state.video);
 
   
 
@@ -69,8 +71,22 @@ function TopRated() {
       dispatch(setHideAlert());
     }, 1000);
   };
-  
   const featuredMovie = selectedMovie || movies[0];
+  
+  const handlePlayVideo = async (movieId) => {
+    const result = await dispatch(fetchMovieVideo(movieId)); 
+
+    if (fetchMovieVideo.fulfilled.match(result)) {
+      const videoData = result.payload;
+      const youtubeVideo = videoData.find(video => video.site === 'YouTube' && video.type === 'Trailer');
+      
+      if (youtubeVideo) {
+        window.open(`https://www.youtube.com/watch?v=${youtubeVideo.key}`, '_blank');
+      }
+    }
+  };
+  
+
 
   return (
     <>
@@ -246,7 +262,7 @@ function TopRated() {
                   alignItems:"center",
                 
                 }}>
-                <Button sx={{color:"white"}}>
+                <Button sx={{color:"white"}} onClick={() => handlePlayVideo(movie.id)}>
                 <PlayCircleFilledWhiteOutlinedIcon  sx={{fontSize:"60px", '&:hover': {
                   transform: 'scale(1.1)',
                 },
