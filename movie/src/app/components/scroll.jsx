@@ -33,7 +33,7 @@ const ScrollToTop = () => {
           sx={{
             cursor: 'pointer',
             position: 'fixed',
-            right: 16,
+            right: 12,
             bottom: 16,
             zIndex: 1000,
             transition: 'transform 0.3s ease',

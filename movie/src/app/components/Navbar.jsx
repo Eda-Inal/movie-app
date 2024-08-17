@@ -81,9 +81,9 @@ function Navbar() {
             
             <SiThemoviedatabase />  FilmLab
             </Typography>
-            <Box sx={{ flex: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'center' }}>
+            {/* <Box sx={{ flex: 1, display: { xs: 'none', lg: 'flex' }, justifyContent: 'center' }}>
               <Search />
-            </Box>
+            </Box> */}
             <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
             <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
     <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
@@ -167,9 +167,9 @@ function Navbar() {
           <Typography variant="h3" component="div" sx={{ textTransform: 'capitalize' }}>Dashboard</Typography>
         </Box>
         <List>
-          <Box>
+          {/* <Box>
             <Search />
-          </Box>
+          </Box> */}
           <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton onClick={handleSidebarFalse}>
               <MovieFilterOutlinedIcon  className={styles.icon} color="secondary" />
