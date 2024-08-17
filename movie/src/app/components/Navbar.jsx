@@ -85,7 +85,7 @@ function Navbar() {
               <Search />
             </Box>
             <Box sx={{ flex: 1, display: "flex", justifyContent: "flex-end" }}>
-            <Link href="/home" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
     <Button sx={{ display: { xs: 'none', lg: 'block' } }}>
       <Typography component="span" color="textColor.main" sx={{ textDecoration: 'none',textTransform: 'capitalize' }}>
        Top Rated
@@ -170,7 +170,7 @@ function Navbar() {
           <Box>
             <Search />
           </Box>
-          <Link href="/home" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link href="/" passHref style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItemButton onClick={handleSidebarFalse}>
               <MovieFilterOutlinedIcon  className={styles.icon} color="secondary" />
               <ListItemText  primary="Top Rated" sx={{ textTransform: 'capitalize' }} />

@@ -19,7 +19,7 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 
 
 
-function Home() {
+function TopRated() {
   const dispatch = useDispatch();
   const { movies, currentPage, totalPages,loading, isDark,isDetailOpen,showAlert, favoriteMovieIds,selectedMovie,addIcon} = useSelector((state) => state.movie);
 
@@ -400,4 +400,4 @@ onClick={() => handleMovieSelect(movie)}
   );
 }
 
-export default Home;
+export default TopRated;
