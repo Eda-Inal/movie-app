@@ -1,6 +1,6 @@
 # movie-app
 
-## [Live](https://filmlab.vercel.app/).
+## [Live](https://filmlab.vercel.app/)
 
 ### This movie application is built using Next.js, Redux Toolkit, Redux Thunk, useEffect, and useState. The design is powered by Material-UI and is fully responsive, featuring a sidebar that appears on smaller screens. The application supports both dark and light modes, allowing users to switch between themes.
 
