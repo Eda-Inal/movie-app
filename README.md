@@ -14,4 +14,4 @@
   
   ![Ekran görüntüsü 2024-08-18 122553](https://github.com/user-attachments/assets/448935c4-9bd7-48fd-95d2-97ef8e7687ad)
   ***
-![Ekran görüntüsü 2024-08-18 122658](https://github.com/user-attachments/assets/326040a0-fc8b-4bed-a1d3-7035d79e0871)
+  ![Ekran görüntüsü 2024-08-18 122658](https://github.com/user-attachments/assets/326040a0-fc8b-4bed-a1d3-7035d79e0871)
