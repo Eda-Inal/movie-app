@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 export const fetchTopRatedMovies = createAsyncThunk(
   'movie/fetchTopRatedMovies',
   async (page) => { 
-    const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=3d6f6952453bf34233cb9f9eb9cd3739&page=${page}`);
+    const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&page=${page}`);
     const data = await response.json();
     console.log('API Data:', data);
     return data; 

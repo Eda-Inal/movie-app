@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 export const fetchCast = createAsyncThunk(
   'cast/fetchCast',
   async (movieId) => {
-    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=3d6f6952453bf34233cb9f9eb9cd3739`);
+    const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`);
     return response.data.cast.slice(0, 6); 
   }
 );
