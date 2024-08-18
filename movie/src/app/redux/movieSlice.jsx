@@ -7,7 +7,7 @@ export const fetchTopRatedMovies = createAsyncThunk(
     const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&page=${page}`);
     const data = await response.json();
     console.log('API Data:', data);
-    return data; 
+    return data 
   }
 );
 
