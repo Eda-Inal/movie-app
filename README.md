@@ -1,4 +1,4 @@
-# movie-app
+# Movie App
 
 ## [Live](https://filmlab.vercel.app/)
 
