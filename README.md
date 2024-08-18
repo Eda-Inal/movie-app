@@ -2,7 +2,7 @@
 
 ## [Live](https://filmlab.vercel.app/)
 
-### This movie application is built using Next.js, Redux Toolkit, Redux Thunk, useEffect, and useState. The design is powered by Material-UI and is fully responsive, featuring a sidebar that appears on smaller screens. The application supports both dark and light modes, allowing users to switch between themes.
+### This movie website is built using Next.js, Redux Toolkit, Redux Thunk, useEffect, and useState. The design is powered by Material-UI and is fully responsive, featuring a sidebar that appears on smaller screens. The application supports both dark and light modes, allowing users to switch between themes.
 
 ### The TMDb API is utilized to fetch data across four different slices: Top Rated Movies, Popular Movies, Cast details, and Trailers. Each slice is managed separately in Redux.
 ### Key features include:
